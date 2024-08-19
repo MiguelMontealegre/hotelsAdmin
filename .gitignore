@@ -1,0 +1,92 @@
+/timesheets.pem
+
+# BACKEND
+/Backend/node_modules
+
+# Ignorar directorios y archivos específicos en public
+/Backend/public/hot
+/Backend/public/storage
+/Backend/public/tmp
+/Backend/public/vendor
+
+# Ignorar archivos de configuración y caché en storage
+/Backend/storage/*.key
+/Backend/storage/tmp
+
+# Ignorar vendor y otros archivos y directorios específicos del proyecto
+/Backend/vendor
+/Backend/.env
+/Backend/.env.backup
+/Backend/.phpunit.result.cache
+/Backend/Homestead.json
+/Backend/Homestead.yaml
+/Backend/npm-debug.log
+/Backend/yarn-error.log
+/Backend/.idea
+/Backend/.vscode
+/Backend/composer.lock
+/Backend/.php-cs-fixer.cache
+/Backend/phpunit.xml
+/Backend/.DS_Store
+/Backend/yarn.lock
+/Backend/google_credentials.json
+
+
+
+
+
+
+# FRONTEND
+
+# compiled output
+/TIMESHEETS_FRONTEND/dist
+/TIMESHEETS_FRONTEND/tmp
+/TIMESHEETS_FRONTEND/out-tsc
+# Only exists if Bazel was run
+/TIMESHEETS_FRONTEND/bazel-out
+
+# dependencies
+/TIMESHEETS_FRONTEND/node_modules
+
+# profiling files
+/TIMESHEETS_FRONTEND/chrome-profiler-events*.json
+/TIMESHEETS_FRONTEND/speed-measure-plugin*.json
+
+# IDEs and editors
+/TIMESHEETS_FRONTEND/.idea
+/TIMESHEETS_FRONTEND/.project
+/TIMESHEETS_FRONTEND/.classpath
+/TIMESHEETS_FRONTEND/.c9/
+/TIMESHEETS_FRONTEND/*.launch
+/TIMESHEETS_FRONTEND/.settings/
+/TIMESHEETS_FRONTEND/*.sublime-workspace
+
+# IDE - VSCode
+/TIMESHEETS_FRONTEND/.vscode/*
+!/TIMESHEETS_FRONTEND/.vscode/settings.json
+!/TIMESHEETS_FRONTEND/.vscode/tasks.json
+!/TIMESHEETS_FRONTEND/.vscode/launch.json
+!/TIMESHEETS_FRONTEND/.vscode/extensions.json
+/TIMESHEETS_FRONTEND/.history/*
+
+# misc
+/TIMESHEETS_FRONTEND/.angular/cache
+/TIMESHEETS_FRONTEND/.sass-cache
+/TIMESHEETS_FRONTEND/connect.lock
+/TIMESHEETS_FRONTEND/coverage
+/TIMESHEETS_FRONTEND/libpeerconnection.log
+/TIMESHEETS_FRONTEND/npm-debug.log
+/TIMESHEETS_FRONTEND/yarn-error.log
+/TIMESHEETS_FRONTEND/testem.log
+/TIMESHEETS_FRONTEND/typings
+
+# System Files
+/TIMESHEETS_FRONTEND/.DS_Store
+/TIMESHEETS_FRONTEND/Thumbs.db
+
+
+
+
+
+
+
