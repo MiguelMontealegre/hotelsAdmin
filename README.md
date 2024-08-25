@@ -1,5 +1,5 @@
-# PEOPAYGO_TIMESHEETS
-Prueba tecnica 
+# Hotels
+
 
 
 
@@ -19,7 +19,7 @@ password: nMlkj.,768-Ab
 
 
 # FRONTEND
-Acceder a la carpeta TIMESHEETS_FRONTEND
+Acceder a la carpeta FrontEnd
 
 npm i --force
 
@@ -31,7 +31,7 @@ http://localhost:4200/#/
 
 Deployed with EC2 AWS on http://54.160.199.184/
 
-Acceder a la carpeta TIMESHEETS_BACKEND
+Acceder a la carpeta Server
 
 composer update
 
@@ -54,11 +54,11 @@ DB_HOST=database-1.c9a28weiie9f.us-east-1.rds.amazonaws.com
 
 DB_PORT=3306
 
-DB_DATABASE=timesheets
+DB_DATABASE=hotels
 
 DB_USERNAME=admin
 
-DB_PASSWORD=timesheetsRoot
+DB_PASSWORD=hotelsRoot
 
 
 
