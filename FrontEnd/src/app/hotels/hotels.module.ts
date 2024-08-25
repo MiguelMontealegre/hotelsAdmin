@@ -26,12 +26,13 @@ import { UiModule } from '@modules/ui/ui.module';
 import { UiSwitchModule } from 'ngx-ui-switch';
 import { WidgetModule } from '@modules/widget/widget.module';
 import { HotelsRoutingModule } from './hotels-routing.module';
-import { HotelDetailComponent } from './components/product-detail/hotel-detail.component';
+import { HotelDetailComponent } from './components/hotel-detail/hotel-detail.component';
 import { Hotel } from '@models/hotels/hotel.model';
+import { SuitesListPageComponent } from './components/hotel-suites/list-page.component';
 
 @NgModule({
   declarations: [
-    ListPageComponent, DetailPageComponent, HotelDetailComponent,
+    ListPageComponent, DetailPageComponent, HotelDetailComponent, SuitesListPageComponent
   ],
   imports: [
     CommonModule,

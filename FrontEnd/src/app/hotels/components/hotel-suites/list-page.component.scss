@@ -1,0 +1,46 @@
+.custom-icon-hover {
+  cursor: pointer;
+  font-size: 23px;
+  transition: transform 0.3s ease-in-out;
+}
+
+
+.custom-icon-hover:hover {
+  transform: scale(1.4);
+}
+
+
+
+.avatar-sm {
+  @media(max-width: 450px) {
+    height: 2rem;
+    width: 2rem;
+    .avatar-title {
+      font-size: 10px !important;
+    }
+  }
+  @media(max-width: 300px) {
+    height: 1.5rem;
+    width: 1.5rem;
+    .avatar-title {
+      font-size: 8px !important;
+    }
+  }
+}
+
+
+
+.product-ref {
+  @media(max-width: 500px) {
+    font-size: 12px;
+  }
+}
+
+
+.container-fluid-responsive {
+  max-width: 96% !important;
+  @media(max-width: 500px) {
+    max-width: 100% !important;
+  }
+}
+

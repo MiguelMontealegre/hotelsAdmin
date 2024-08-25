@@ -1,0 +1,141 @@
+<div class="container-fluid container-fluid-responsive">
+  <div class="row">
+    <div class="col-lg-12 mt-5 px-0">
+      <div class="row mb-3">
+        <div class="col-xl-4 col-sm-6">
+          <div class="mt-2">
+            <h3>Hotel Suites</h3>
+          </div>
+        </div>
+        <div class="col-lg-8 col-sm-6">
+          <form class="mt-4 mt-sm-0 float-sm-end d-flex align-items-center">
+            <div class="search-box me-2">
+              <div class="position-relative">
+                <input
+                  type="search"
+                  class="form-control"
+                  id="searchInput"
+                  [placeholder]="TRANSLATE_KEY + 'SEARCH' | translate"
+                  [formControl]="searchControl"
+                  autocomplete="new-input"
+                />
+                <i class="bx bx-search-alt search-icon"></i>
+              </div>
+            </div>
+            <ul class="nav nav-pills product-view-nav">
+              <li class="nav-item">
+                <a (click)="clear()" class="btn btn-light"
+                  ><i class="mdi mdi-refresh"></i
+                ></a>
+              </li>
+            </ul>
+          </form>
+        </div>
+      </div>
+
+      <div class="row mx-0 justify-content-center">
+        <div
+          *ngIf="(service.collection$ | async)?.data?.length; else empty"
+          class="row mx-0 px-0"
+        >
+          <div
+            class="col-6 col-xl-3 col-lg-4 col-md-6 col-sm-6 px-1 py-1"
+            *ngFor="let product of (service.collection$ | async)?.data"
+          >
+            <div class="card mb-0">
+              <div class="card-body">
+                <div class="product-img position-relative">
+                  <div
+                    class="avatar-sm product-ribbon"
+                  >
+                    <span class="avatar-title rounded-circle bg-primary">
+                      -{{ product.discount }} %
+                    </span>
+                  </div>
+                  <a
+                    *ngIf="product.media"
+                    [routerLink]="['./../detail/', product.id]"
+                    href="javascript: void(0);"
+                    ><img
+                      src="{{ product.media[0]?.url }}"
+                      alt=""
+                      width="240"
+                      height="240"
+                      class="img-fluid rounded mx-auto d-block"
+                  /></a>
+                </div>
+                <div class="mt-4 text-center">
+                  <h5 class="mb-3 product-ref">
+                    <a
+                      [routerLink]="['./../detail/', product.id]"
+                      href="javascript: void(0);"
+                      class="text-dark"
+                      >{{ product.title }}
+                    </a>
+                  </h5>
+
+                  <div
+
+                  >
+                    <h5 *ngIf="product.discount > 0" class="mb-4">
+                      <b
+                        >
+                        {{
+                          (
+                            product?.price -
+                            product?.price * (product?.discount / 100)
+                          ) | punctuation
+                        }} COP
+                      </b>
+                      <br />
+                      <span class="text-muted mr-2 mt-2"
+                        ><del> {{ product.price  | punctuation  }}</del></span
+                      >
+                    </h5>
+                    <h5
+                      *ngIf="
+                        product?.discount === null || product?.discount == 0
+                      "
+                      class="mb-4"
+                    >
+                      <b>{{ product?.price  | punctuation  }} COP</b>
+                      <br />
+                      <span class="mr-2 mt-2" style="color: transparent"
+                        >.</span
+                      >
+                    </h5>
+                  </div>
+
+                  <!---------------------------------------------------------------->
+
+                  <p *ngIf="product.likesCount > 0 && product.userLike" class="font-size-15 mt-3">
+                    <i (click)="like(product)" class="bx bxs-heart text-danger cursor-pointer"></i>
+                    {{ product.likesCount }}
+                  </p>
+
+                  <p *ngIf="!product.userLike" class="font-size-15 mt-3">
+                    <i (click)="like(product)" class="bx bx-heart text-danger cursor-pointer"></i>
+                    {{ product.likesCount }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ng-template #empty>
+          <div class="row justify-content-center py-2">
+            <div class="col-12">
+              <h3 class="text-center">No hay suites disponibles</h3>
+            </div>
+          </div>
+        </ng-template>
+        <!-- end row -->
+      </div>
+      <div class="row">
+        <div class="col-lg-12"></div>
+      </div>
+    </div>
+    <!-- end row -->
+  </div>
+</div>
