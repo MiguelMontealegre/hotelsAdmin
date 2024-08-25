@@ -1,0 +1,99 @@
+<div class="container-fluid container-fluid-responsive">
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title mb-4">Filtros</h4>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-9 px-0">
+      <div class="row mb-3">
+        <div class="col-xl-4 col-sm-6">
+          <div class="mt-2">
+            <h5>Recientes</h5>
+          </div>
+        </div>
+        <div class="col-lg-8 col-sm-6">
+          <form class="mt-4 mt-sm-0 float-sm-end d-flex align-items-center">
+            <div class="search-box me-2">
+              <div class="position-relative">
+                <input
+                  type="search"
+                  class="form-control"
+                  id="searchInput"
+                  [placeholder]="TRANSLATE_KEY + 'SEARCH' | translate"
+                  [formControl]="searchControl"
+                  autocomplete="new-input"
+                />
+                <i class="bx bx-search-alt search-icon"></i>
+              </div>
+            </div>
+            <ul class="nav nav-pills product-view-nav">
+              <li class="nav-item">
+                <a (click)="clear()" class="btn btn-light"
+                  ><i class="mdi mdi-refresh"></i
+                ></a>
+              </li>
+            </ul>
+          </form>
+        </div>
+      </div>
+
+      <div class="row mx-0 justify-content-center">
+        <div
+          *ngIf="(service.collection$ | async)?.data?.length; else empty"
+          class="row mx-0 px-0"
+        >
+          <div
+            class="col-6 col-xl-3 col-lg-4 col-md-6 col-sm-6 px-1 py-1"
+            *ngFor="let product of (service.collection$ | async)?.data"
+          >
+            <div class="card mb-0">
+              <div class="card-body">
+                <div class="product-img position-relative">
+                  <a
+                    *ngIf="product.media"
+                    [routerLink]="['./../detail/', product.id]"
+                    href="javascript: void(0);"
+                    ><img
+                      src="{{ product.media[0]?.url }}"
+                      alt=""
+                      width="240"
+                      height="240"
+                      class="img-fluid rounded mx-auto d-block"
+                  /></a>
+                </div>
+                <div class="mt-4 text-center">
+                  <h5 class="mb-3 product-ref">
+                    <a
+                      [routerLink]="['./../detail/', product.id]"
+                      href="javascript: void(0);"
+                      class="text-dark"
+                      >{{ product.name }}
+                    </a>
+                  </h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ng-template #empty>
+          <div class="row justify-content-center py-2">
+            <div class="col-12">
+              <h3 class="text-center">No hay hoteles disponibles</h3>
+            </div>
+          </div>
+        </ng-template>
+        <!-- end row -->
+      </div>
+      <div class="row">
+        <div class="col-lg-12"></div>
+      </div>
+    </div>
+    <!-- end row -->
+  </div>
+</div>

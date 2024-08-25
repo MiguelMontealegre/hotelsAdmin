@@ -1,0 +1,122 @@
+<div class="container-fluid">
+  <app-page-title
+    title="Ordenes"
+    [breadcrumbItems]="breadCrumbs"></app-page-title>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body border-bottom">
+          <div class="row justify-content-end">
+            <div class="col-md-5">
+              <div class="d-flex justify-content-end gap-2">
+                <input
+                  type="search"
+                  class="form-control"
+                  id="searchInput"
+                  placeholder="Search"
+                  [formControl]="searchControl"
+                  autocomplete="new-input" />
+
+                <a (click)="clear()" class="btn btn-light" id="clearSearch"
+                  ><i class="mdi mdi-refresh"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-centered table-hover align-middle">
+              <thead>
+                <tr>
+                  <th>Valor</th>
+                  <th>Medio de Pago</th>
+                  <th>Cuidad</th>
+                  <th>Pais</th>
+                  <th>Payment</th>
+                  <th>Estado</th>
+                  <th scope="col" width="300px">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of (service.collection$ | async)?.data; let i = index">
+                  <th scope="row">{{ data.payment.value  | punctuation  }} COP</th>
+                  <td>{{ data.payment.provider }}</td>
+                  <td>{{data.city}}</td>
+                  <td>{{ data.country }}</td>
+                  <td>
+                      <span class="badge badge-pill badge-soft-success font-size-11 p-1">Exitoso</span>
+                  </td>
+                  <td>
+                    <ng-container *ngIf="!editingStatus || editingIndex !== i">
+                      <span class="fw-bold text-primary">{{data.status === 'STORE' ? 'En tienda' : (data.status === 'DISTRIBUTION' ? 'En distribucion' : (data.status === 'DELIVERED' ? 'Entregado' : 'Unknown'))}}</span>
+                      <button (click)="editStatus(data,i)" class="btn btn-sm btn-outline-primary ms-2"><i class="bx bx-edit-alt"></i></button>
+                    </ng-container>
+                    
+                    <ng-container *ngIf="editingStatus && editingIndex === i">
+                      <select class="form-select mb-2" [(ngModel)]="data.status" name="status">
+                        <option *ngFor="let item of statusItems" [value]="item.value">{{ item.label }}</option>
+                      </select>
+                      <button (click)="saveStatus(data)" class="btn btn-sm btn-primary me-2"><i class="bx bx-check"></i> Guardar</button>
+                      <button (click)="cancelEdit()" class="btn btn-sm btn-secondary"><i class="bx bx-x"></i> Cancelar</button>
+                    </ng-container>
+                  </td>
+                  
+                
+                  <td>
+                      <div class="d-flex gap-1 justify-content-start">
+                          <a [routerLink]="'./' + data.id" class="btn btn-sm btn-outline-primary"><i class="bx bx-group"></i>&nbsp;View</a>
+                      </div>
+                  </td>   
+              </tr>
+       
+              
+              </tbody>
+            </table>
+          </div>
+
+          <div class="row justify-content-between align-items-center">
+            <div class="col-auto me-auto">
+              <div class="dataTables_length" id="tickets-table_length">
+                <label class="d-inline-flex align-items-center"
+                  >Mostrar
+                  <select
+                    aria-controls="tickets-table"
+                    name="pageSize"
+                    [formControl]="limitControl"
+                    class="custom-select custom-select-sm form-control form-control-sm mx-2">
+                    <option [ngValue]="10">10</option>
+                    <option [ngValue]="25">25</option>
+                    <option [ngValue]="50">50</option>
+                    <option [ngValue]="100">100</option>
+                  </select>
+                  entries</label
+                >
+              </div>
+            </div>
+            <div class="col-auto me-auto">
+              <p class="mb-0">
+                show <b>{{ service.from }}</b> to <b>{{ service.to }}</b> of
+                <b>{{ service.total }}</b> entries
+              </p>
+            </div>
+
+            <div class="col-auto">
+              <ul
+                class="pagination pagination-rounded justify-content-end mb-2">
+                <ngb-pagination
+                  [maxSize]="3"
+                  [collectionSize]="service.total"
+                  [(page)]="service.page"
+                  [pageSize]="service.limit">
+                </ngb-pagination>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

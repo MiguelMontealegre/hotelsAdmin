@@ -1,0 +1,446 @@
+<div class="container mt-4">
+  <h1>Editar Estilos</h1>
+  <div class="row mt-4">
+    <div class="col-12">
+      <form>
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Configuración de Colores</h5>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-2 p-2">
+                <div class="border  rounded-3 m-2">
+                  <div class=" m-2">
+                    <div class="form-group  justify-content-center">
+                        <input type="color" id="primaryColor" class="form-control input-colors form-control-lg p-0 rounded-3 " [(ngModel)]="primaryColor"
+                        name="primaryColor" (change)="changeRGBcolor('bs-primary-rgb', primaryColor, 'primary')">
+                        <label class="my-1   " for="primaryColor">Fondo Primario:</label>
+                        <p >{{ primaryColor }}</p>
+                    </div>
+                    
+                  </div>
+                </div>
+                
+              </div> 
+              
+              <div class="col-md-2 p-2">
+                <div class="border  m-2 rounded-3">
+                  <div class="m-2">
+                    <div class="form-group  justify-content-center">
+               
+                        <input type="color" id="secondaryColor" class="form-control input-colors form-control-lg p-0 rounded-3" [(ngModel)]="secondaryColor"
+                               name="secondaryColor" (input)="changeRGBcolor('bs-secondary-rgb', secondaryColor, 'secondary')">
+                        <label class="my-1" for="secondaryColor">Fondo Secundario:</label>
+                        <p>{{ secondaryColor }}</p>
+                  
+                    </div>
+                  </div>
+                </div>
+        
+              </div>
+              
+              <div class="col-md-2 p-2">
+                <div class=" border   m-2 rounded-3">
+                  <div class="m-2">
+                    <div class="form-group ">
+                        <input type="color" id="successColor" class="form-control input-colors form-control-lg p-0 rounded-3" [(ngModel)]="successColor"
+                               name="successColor" (input)="changeRGBcolor('bs-success-rgb', successColor, 'success')">
+                        <label class="my-1" for="successColor">Fondo Éxito:</label>
+                        <p>{{ successColor }}</p>
+                    </div>
+                  </div>
+
+                </div>
+          
+              </div>
+              
+              <div class="col-md-2 p-2">
+                <div class=" border   m-2 rounded-3">
+                  <div class="m-2">
+                    <div class="form-group ">
+              
+                        <input type="color" id="infoColor" class="form-control input-colors form-control-lg p-0 rounded-3" [(ngModel)]="infoColor"
+                               name="infoColor" (input)="changeRGBcolor('bs-info-rgb', infoColor, 'info')">
+                        <label class="my-1" for="infoColor">Color Info:</label>
+                        <p>{{ infoColor }}</p>
+                  
+                    </div>
+                  </div>
+                </div>
+          
+              </div>
+              
+              <div class="col-md-2 p-2">
+                <div class="border   m-2 rounded-3">
+                  <div class="m-2">
+                    <div class="form-group ">
+                  
+                        <input type="color" id="warningColor" class="form-control input-colors form-control-lg p-0 rounded-3" [(ngModel)]="warningColor"
+                               name="warningColor" (input)="changeRGBcolor('bs-warning-rgb', warningColor, 'warning')">
+                        <label class="my-1" for="warningColor">Fondo Alerta:</label>
+                        <p>{{ warningColor }}</p>
+                    
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+
+              <div class="col-md-2 p-2">
+                <div class=" border   m-2 rounded-3">
+                  <div class="m-2">
+                    <div class="form-group r">
+                
+                        <input type="color" id="dangerColor" class="form-control input-colors form-control-lg p-0 rounded-3" [(ngModel)]="dangerColor"
+                               name="dangerColor" (input)="changeRGBcolor('bs-danger-rgb', dangerColor, 'danger')">
+                        <label class="my-1" for="dangerColor">Color Error:</label>
+                        <p>{{ dangerColor }}</p>
+                 
+                    </div>
+                  </div>
+                </div>
+           
+              </div>
+              
+      
+              <div class="col-md-2 p-2">
+                <div class=" border   m-2 rounded-3">
+                  <div class="m-2">
+                    <div class="form-group ">
+                     
+                        <input type="color" id="lightColor" class="form-control input-colors form-control-lg p-0 rounded-3" [(ngModel)]="lightColor"
+                               name="lightColor" (input)="changeRGBcolor('bs-light-rgb', lightColor)">
+                        <label class="my-1" for="lightColor">Fondo Claro:</label>
+                        <p>{{ lightColor }}</p>
+               
+                    </div>
+                  </div>
+                </div>
+            
+              </div>
+              
+
+              <div class="col-md-2 p-2">
+                <div class=" border m-2 rounded-3">
+                  <div class="m-2">
+                    <div class="form-group ">
+             
+                        <input type="color" id="darkColor" class="form-control input-colors form-control-lg p-0 rounded-3" [(ngModel)]="darkColor"
+                               name="darkColor" (input)="changeRGBcolor('bs-dark-rgb', darkColor)">
+                        <label class="my-1" for="darkColor">Fondo Oscuro:</label>
+                        <p>{{ darkColor }}</p>
+                  
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+              
+              <div class="col-md-2 p-2">
+                <div class=" border  m-2 rounded-3">
+                  <div class="m-2">
+                    <div class="form-group ">
+                     
+                        <input type="color" id="textColor" class="form-control input-colors form-control-lg p-0 rounded-3" [(ngModel)]="textColor"
+                               name="textColor" (input)="changeRGBcolor('bs-white-rgb', textColor)">
+                        <label class="my-1" for="textColor">Texto Claro:</label>
+                        <p>{{ textColor }}</p>
+                     
+                    </div>
+                  </div>
+                </div>
+             
+              </div>
+              
+
+              <div class="col-md-2 p-2">
+                <div class="border  m-2 rounded-3">
+                  <div class="m-2">
+                    <div class="form-group ">
+                  
+                        
+                        <input type="color" id="bodyColors" class="form-control input-colors form-control-lg p-0 rounded-3" 
+                               [(ngModel)]="bodyColor" name="bodyColor"
+                               (input)="changeColorVariable('bs-body-color', $event.target.value)">
+                        <label for="bodyColor">Texto Color:</label>
+                        <p>{{bodyColor}}</p>
+                   
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              
+
+              <div class="col-md-2 p-2">
+                <div class="border   m-2 rounded-3">
+                  <div class="m-2">
+                    <div class="form-group "> <!-- Cambiado '' por 'text-center' para centrar horizontalmente -->
+        
+              <input type="color" id="bodyBgColor" class="form-control input-colors form-control-lg p-0 rounded-3" 
+              [(ngModel)]="bodyBgColor" name="bodyBgColor"
+              (change)="changeColorVariable('bs-body-bg', $event.target.value)">
+              <label for="bodyBgColor">Color de Fondo:</label>
+              <p>{{bodyBgColor}}</p>
+         
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">Colores del Header</h5>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-2 p-2">
+                      <div class="border  m-2 rounded-3">
+                          <div class="m-2">
+                              <div class="form-group ">
+                             
+                                      <input type="color" id="bs-heading-color" class="form-control input-colors form-control-lg p-0 rounded-3"
+                                          [(ngModel)]="headingColor" name="bs-heading-color"
+                                          (input)="changeColorVariable('bs-heading-bg', $event.target.value)">
+                                      <label class="my-1" for="bs-heading-color">Color del Header:</label>
+                                      <p>{{ headingColor }}</p>
+                              
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <div class="col-md-2 p-2">
+                    <div class="border  m-2 rounded-3">
+                        <div class="m-2">
+                            <div class="form-group ">
+                       
+                            <input type="color" id="bs-topbar-search-bg" class="form-control input-colors form-control-lg p-0 rounded-3"
+                            [(ngModel)]="topbarSearchColor" name="bs-topbar-search-bg"
+                            (input)="changeColorVariable('bs-topbar-search-bg', $event.target.value)">
+                            <label for="bs-topbar-search-bg">Color  Barra de Busqueda:</label>
+                        <p>{{ topbarSearchColor }}</p>
+                       
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-2 p-2">
+                  <div class="border  m-2 rounded-3">
+                      <div class="m-2">
+                          <div class="form-group ">
+                            
+                                  <input type="color" id="bs-topnav-bg" class="form-control input-colors form-control-lg p-0 rounded-3"
+                                      [(ngModel)]="topnavColor" name="bs-topnav-bg"
+                                      (input)="changeColorVariable('bs-topnav-bg', $event.target.value)">
+                                      <label class="my-1" for="bs-topnav-bg">Color del menú:</label>
+
+                                  <p>{{ topnavColor }}</p>
+                             
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="col-md-2 p-2">
+                <div class="border  m-2 rounded-3">
+                    <div class="m-2">
+                        <div class="form-group  ">
+                      
+                            <input type="color" id="bs-header-item-color" class="form-control input-colors form-control-lg p-0 rounded-3"
+                                [(ngModel)]="headerItemColor" name="bs-header-item-color"
+                                (input)="changeColorVariable('bs-header-item-color', $event.target.value)">
+                                <label for="bs-header-item-color">Color del encabezado:</label>
+
+                            <p>{{ headerItemColor }}</p>
+                        
+                   
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-2 p-2">
+                <div class="border  m-2 rounded-3">
+                    <div class="m-2">
+                        <div class="form-group ">
+                        
+                            <input type="color" id="bs-boxed-body-bg" class="form-control input-colors form-control-lg p-0 rounded-3"
+                                [(ngModel)]="boxedBodyColor" name="bs-boxed-body-bg"
+                                (input)="changeColorVariable('bs-boxed-body-bg', $event.target.value)">
+                                <label for="bs-boxed-body-bg">Color de fondo de caja:</label>
+                            <p>{{ boxedBodyColor }}</p>
+                     
+                      
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-2 p-2">
+              <div class="border  m-2 rounded-3">
+                  <div class="m-2">
+                      <div class="form-group ">
+                       
+                              <input type="color" id="bs-input-focus-border-color" class="form-control input-colors form-control-lg p-0 rounded-3"
+                                  [(ngModel)]="inputFocusBorderColor" name="bs-input-focus-border-color"
+                                  (input)="changeColorVariable('bs-input-focus-border-color', $event.target.value)">
+                                  <label for="bs-input-focus-border-color">Color del borde al enfocar:</label>
+                              <p>{{ inputFocusBorderColor }}</p>
+                      
+                      </div>
+                  </div>
+              </div>
+          </div>
+          
+          <div class="col-md-2 p-2">
+              <div class="border  m-2 rounded-3">
+                  <div class="m-2">
+                      <div class="form-group ">
+                       
+                              <input type="color" id="bs-menu-item-color" class="form-control input-colors form-control-lg p-0 rounded-3"
+                                  [(ngModel)]="menuItemColor" name="bs-menu-item-color"
+                                  (input)="changeColorVariable('bs-menu-item-color', $event.target.value)">
+                                  <label for="bs-menu-item-color">Color del ítem de menú:</label>
+                              <p>{{ menuItemColor }}</p>
+                       
+                      </div>
+                  </div>
+              </div>
+          </div>
+          
+          <div class="col-md-2 p-2">
+              <div class="border  m-2 rounded-3">
+                  <div class="m-2">
+                      <div class="form-group ">
+                       
+                              <input type="color" id="bs-heading-dark-bg" class="form-control input-colors form-control-lg p-0 rounded-3"
+                                  [(ngModel)]="headingDarkBgColor" name="bs-heading-dark-bg"
+                                  (input)="changeColorVariable('bs-heading-dark-bg', $event.target.value)">
+                                  <label for="bs-heading-dark-bg">Encabezado oscuro:</label>
+                              <p>{{ headingDarkBgColor }}</p>
+                         
+                      </div>
+                  </div>
+              </div>
+          </div>
+          
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+
+
+
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Colores del Footer</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-2 p-2">
+                            <div class="border  m-2 rounded-3">
+                                <div class="m-2">
+                                    <div class="form-group ">
+                                       
+                                            <input type="color" id="bs-input-border-color" class="form-control input-colors form-control-lg p-0 rounded-3"
+                                                name="footerInputBorderColor" [(ngModel)]="footerInputBorderColor"
+                                                (change)="changeColorVariable('bs-input-border-color', $event.target.value)">
+                                                <label for="bs-input-border-color">Color del borde del input:</label>
+                                            <p>{{ footerInputBorderColor }}</p>
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 p-2">
+                            <div class=" border m-2 rounded-3">
+                                <div class="m-2">
+                                    <div class="form-group ">
+                                      
+                                            <input type="color" id="bs-footer-bg" class="form-control input-colors form-control-lg p-0 rounded-3"
+                                                name="footerBgColor" [(ngModel)]="footerBgColor"
+                                                (input)="changeColorVariable('bs-footer-bg', $event.target.value)">
+                                                <label for="bs-footer-bg">Color del pie de página:</label>
+                                            <p>{{ footerBgColor }}</p>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 p-2">
+                            <div class=" border m-2 rounded-3">
+                                <div class="m-2">
+                                    <div class="form-group ">
+                                      
+                                            <input type="color" id="bs-footer-color" class="form-control input-colors form-control-lg p-0 rounded-3"
+                                                name="footerColor" [(ngModel)]="footerColor"
+                                                (input)="changeColorVariable('bs-footer-color', $event.target.value)">
+                                                <label for="bs-footer-color"> Texto pie de página:</label>
+                                            <p>{{ footerColor }}</p>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 p-2">
+                            <div class=" border m-2 rounded-3">
+                                <div class="m-2">
+                                    <div class="form-group ">
+                                      
+                                            <input type="color" id="bs-custom-white" class="form-control input-colors form-control-lg p-0 rounded-3"
+                                                name="customWhiteColor" [(ngModel)]="customWhiteColor"
+                                                (input)="changeColorVariable('bs-custom-white', $event.target.value)">
+                                                <label for="bs-custom-white">Color claro personalizado:</label>
+
+                                            <p>{{ customWhiteColor }}</p>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 p-2">
+                            <div class=" border m-2 rounded-3">
+                                <div class="m-2">
+                                    <div class="form-group ">
+                                       
+                                            <input type="color" id="bs-hr-border-color" class="form-control input-colors form-control-lg p-0 rounded-3 "
+                                                name="hrBorderColor" [(ngModel)]="hrBorderColor"
+                                                (input)="changeColorVariable('bs-hr-border-color', $event.target.value)">
+                                                <label for="bs-hr-border-color">Color del borde horizontal:</label>
+                                            <p>{{ hrBorderColor }}</p>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div  class="d-flex justify-content-between">
+            <button (click)="resetColors()" class="btn-primary btn"> Reset</button>
+            <button type="submit" (click)="saveStyles()" class="btn btn-primary">Guardar Cambios</button>
+          </div>
+        </div>
+ 
+      </form>
+    </div>
+  </div>
+</div>

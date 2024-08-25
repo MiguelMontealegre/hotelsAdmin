@@ -1,0 +1,149 @@
+  <div class="row">
+
+      <div class="col-12">
+        <div class="card">
+    
+          <div class="card-body border-bottom">
+            <div class="card-title">
+              <h4 class="mb-0">Ventas Por usuario</h4>
+            </div>
+            <div class="row justify-content-end">
+
+  
+              <div class="col-md-5">
+                <div class="d-flex justify-content-end gap-2">
+                  <input
+                    type="search"
+                    class="form-control"
+                    id="searchInput"
+                    [placeholder]="TRANSLATE_KEY+'SEARCH'|translate"
+                    [formControl]="searchControl"
+                    autocomplete="new-input" />
+  
+                  <a (click)="clear()" class="btn btn-light"
+                    ><i class="mdi mdi-refresh"></i
+                  ></a>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="card-body">
+            <div class="table-responsive">
+              <table
+                class="table table-centered table-nowrap table-hover align-middle">
+                <thead>
+                  <tr>
+                    <th
+                      sortable="firstName"
+                      (sort)="onSort($event)"
+                      style="width: 10%">
+                      {{TRANSLATE_KEY+ 'F_NAME' | translate}}
+                    </th>
+                    <th
+                      sortable="lastName"
+                      (sort)="onSort($event)"
+                      style="width: 10%">
+                      {{TRANSLATE_KEY+ 'L_NAME' | translate}}
+                    </th>
+                    <th
+                      sortable="email"
+                      (sort)="onSort($event)"
+                      style="width: 10%">
+                      {{TRANSLATE_KEY+ 'EMAIL' | translate}}
+                    </th>
+                    <th style="width: 10%">{{TRANSLATE_KEY+ 'ROLES' | translate}}</th>
+                    <th >Valr Comprado</th>
+                    <th >Numero de Ordenes
+                    </th>
+   
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container *ngIf="(service.collection$ | async)?.data; let dataArray">
+                    <ng-container *ngFor="let data of dataArray; let dataIndex = index">
+                      <tr>
+                        <td>{{ data.firstName }}</td>
+                        <td>{{ data.lastName }}</td>
+                        <td>{{ data.email }}</td>
+                        <td>
+                          <div class="col-12 text-center" *ngFor="let role of data.roles">
+                            <span class="badge badge-soft-secondary font-size-11 w-100 p-2">
+                              {{ getRoleName(role.name) }}
+ 
+                            </span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>{{ data.getTotalPurchaseValue | punctuation  }}</div>
+                        </td>
+                        <td>{{ data.getTotalOrders }}</td>
+                        <td >
+                          <button   class="btn btn-primary" (click)="toggleGraphVisibility(dataIndex)">Ver</button>
+                        </td>
+                      
+                   
+                     
+                      </tr>
+                      <td colspan="6" *ngIf="isGraphVisible[dataIndex]"> <!-- Aquí especificamos que la celda ocupe todas las columnas -->
+                        <app-main-data
+                          *ngIf="graphicParams && graphicParams.length > 0"
+                          [user]="data"
+                          [category]="graphicParams[0].chart"
+                          [type]="graphicParams[0].type"
+                          [title]="graphicParams[0].title">
+                        </app-main-data>
+                      </td>
+                    </ng-container>
+                  </ng-container>
+                </tbody>
+                 
+              </table>
+            </div>
+  
+            <div class="row justify-content-between align-items-center">
+              <div class="col-auto me-auto">
+                <div class="dataTables_length" id="tickets-table_length">
+                  <label class="d-inline-flex align-items-center"
+                    >Mostrar
+                    <select
+                      aria-controls="tickets-table"
+                      name="pageSize"
+                      [formControl]="limitControl"
+                      class="custom-select custom-select-sm form-control form-control-sm mx-2">
+                      <option [ngValue]="10">10</option>
+                      <option [ngValue]="25">25</option>
+                      <option [ngValue]="50">50</option>
+                      <option [ngValue]="100">100</option>
+                    </select>
+                    {{TRANSLATE_KEY+ 'ENTRIES' | translate}}</label
+                  >
+                </div>
+              </div>
+              <div class="col-auto me-auto">
+                <p class="mb-0">
+                  {{TRANSLATE_KEY+ 'SHOWING' | translate}} <b>{{ service.from }}</b> {{TRANSLATE_KEY+ 'TO' | translate}} <b>{{ service.to }}</b> {{TRANSLATE_KEY+ 'OF' | translate}}
+                  <b>{{ service.total }}</b> {{TRANSLATE_KEY+ 'ENTRIES' | translate}}
+                </p>
+              </div>
+  
+              <div class="col-auto">
+                <ul
+                  class="pagination pagination-rounded justify-content-end mb-2">
+                  <ngb-pagination
+                    [collectionSize]="service.total"
+                    [(page)]="service.page"
+                    [maxSize]="3"
+                    [rotate]="true"
+                    [pageSize]="service.limit">
+                  </ngb-pagination>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  

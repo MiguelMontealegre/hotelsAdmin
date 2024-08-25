@@ -1,0 +1,200 @@
+<div class="card-body">
+    <form [formGroup]="group" (ngSubmit)="ngSubmit()">
+      <div class="form-group mb-3">
+        <label for="titulo">Título:</label>
+        <input type="text" class="form-control" id="title" name="titulo" placeholder="Ingresa el título"
+        formControlName="title"
+        [ngClass]="{ 'is-invalid':  f.title.touched && f.title.errors }"/>
+        <div *ngIf="submit && f.title.touched" class="invalid-feedback">
+            <div *ngIf="f['title'].errors">
+            Título es requerido
+            </div>
+            </div>
+      </div>
+      <div class="row">
+    
+    <div class="col-md-6">
+  <div class="mb-3">
+    <label for="startDate">Fecha de Inicio</label>
+    <div class="input-group">
+      <input
+        class="form-control"
+        placeholder="yyyy-mm-dd"
+        name="startDate"
+        [formControl]="f.startDate"
+        ngbDatepicker
+        #startDatePicker="ngbDatepicker"
+        [ngClass]="{ 'is-invalid': f.startDate.touched && f.startDate.errors}"
+
+      />
+
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          (click)="startDatePicker.toggle()"
+          type="button"
+        >
+          <i class="mdi mdi-calendar"></i>
+        </button>
+      </div>
+    </div>
+    <div *ngIf="submit && f.startDate.touched && f.startDate.errors" class="invalid-feedback d-block">
+      <div *ngIf="f.startDate.errors.required">
+        Fecha de inicio es requerida.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-6">
+  <div class="form-group">
+    <label for="endDate">Fecha de Fin:</label>
+    <div class="input-group">
+      <input
+        class="form-control"
+        placeholder="yyyy-mm-dd"
+        name="endDate"
+        [formControl]="f.endDate"
+        ngbDatepicker
+        #endDatePicker="ngbDatepicker"
+        [minDate]="f.startDate.value"
+        [ngClass]="{ 'is-invalid': f.endDate.touched && f.endDate.errors}"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          (click)="endDatePicker.toggle()"
+          type="button"
+        >
+          <i class="mdi mdi-calendar"></i>
+        </button>
+      </div>
+    </div>
+    <div *ngIf="f.endDate.touched && f.endDate.errors" class="invalid-feedback d-block">
+      <div *ngIf="f.endDate.errors.required">
+        Fecha de fin es requerida.
+      </div>
+    </div>
+  </div>
+</div>
+
+        
+        
+          
+        <div class="form-group mb-3">
+            <label for="descripcion">Descripción:</label>
+            <textarea class="form-control" id="descripcion" name="descripcion" rows="3"
+            formControlName="description"
+            [ngClass]="{ 'is-invalid': f.description.touched && f.description.errors }"
+            ></textarea>
+            <div *ngIf="f.description.touched && f.description.errors" class="invalid-feedback">
+                <div *ngIf="f['description'].errors">
+                Descripción es requerido
+                </div>
+                </div>
+          </div>
+          <div class="form-group mb-3">
+            <label for="url">URL:</label>
+            <input type="text" class="form-control" id="url" name="url" placeholder="Ingresa la URL"
+            formControlName="link"
+            [ngClass]="{ 'is-invalid': f.link.touched && f.link.errors }"
+
+            >
+            <div *ngIf="f.link.touched && f.link.errors" class="invalid-feedback">
+                <div *ngIf="f['link'].errors">
+            link es requerido
+                </div>
+                </div>
+
+        </div>
+        <div class="form-group mb-3">
+          <label for="descuento">Descuento (%):</label>
+          <input type="number" class="form-control" id="descuento" name="descuento" placeholder="Ingresa el descuento"
+                 formControlName="discountPercentage"
+                 [ngClass]="{ 'is-invalid': f.discountPercentage.touched && f.discountPercentage.invalid }"
+                 min="0" max="100">
+      
+          <div *ngIf="f.discountPercentage.touched && f.discountPercentage.invalid" class="invalid-feedback">
+              <div *ngIf="f.discountPercentage.errors.required">
+                  El descuento es requerido.
+              </div>
+              <div *ngIf="f.discountPercentage.errors.min || f.discountPercentage.errors.max">
+                  El descuento debe estar entre 0 y 100.
+              </div>
+          </div>
+      </div>
+      
+        <div class="col-12 mb-3">
+            <div *ngIf="!media">
+                <label for="catalog">Catálogo </label>
+                <ngx-dropzone class="dark-dropzone" multiple="false"
+                    (change)="onSelect($event)" [expandable]="false"
+                    accept="image/*"
+                    style="height: 220px !important">
+                    <ngx-dropzone-label>
+                        <p>
+                            <span class="fw-bold">
+                                <i style="font-size: 1.4em"
+                                    class="dripicons-cloud-upload text-primary me-2"></i>
+                                Arrastra una imagen aquí</span>
+                        </p>
+                        <div class="d-flex justify-content-center mt-2">
+                            <div class="d-flex me-4">
+                                <i style="font-size: 1.4em"
+                                    class="mdi mdi-image text-primary me-2"></i>
+                                <p class="my-auto"> </p>
+                            </div>
+                        </div>
+                    </ngx-dropzone-label>
+                </ngx-dropzone>
+            </div>
+        </div>
+        
+        <div class="row mt-3" *ngIf="media">
+            <p class="fw-medium">Imagen</p>
+            <div
+              class="col-2"
+        
+            >
+              <div class="d-flex justify-content-center align-items-center">
+                <a class="active">
+                  <div class="product-color-item border rounded">
+                    <div
+                      class="avatar-lg justify-content-center d-flex align-items-center"
+                    >
+                      <img (click)="lightboxImage(media.url)" [src]="media.url" class="avatar-md cursor-pointer">
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="d-flex justify-content-center mt-1">
+                <button
+                  (click)="dettachMedia()"
+                  class="btn btn-sm btn-outline-danger"
+                >
+                  <i class="fa fa-trash"></i>
+                </button>
+              </div>
+            </div>
+
+
+          </div>
+        
+      </div>
+
+
+
+    <div class="d-flex justify-content-between">
+        <button 
+            type="button" 
+            class="btn btn-primary" 
+            (click)="openModal()">
+            <i class="mdi mdi-plus"></i>
+            Vista Previa
+        </button>
+
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </div>
+    </form>
+
+  </div>

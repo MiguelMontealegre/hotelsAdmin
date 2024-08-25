@@ -1,0 +1,179 @@
+<div class="row justify-content-center mt-4">
+  <div class="col-12">
+    <div class="row">
+      <div class="col-lg-12">
+        <owl-carousel-o
+        [options]="carouselOption"
+        class="events navs-carousel"
+      >
+        <ng-template carouselSlide
+        *ngFor="let product of (service.collection$ | async)?.data">
+        <div class="card">
+          <div class="card-body">
+            <div class="product-img position-relative">
+              <div
+                class="avatar-sm product-ribbon"
+                *ngIf="
+                  (!roleNames.includes('WHOLESALE_USER') &&
+                    product.discount > 0) ||
+                  (roleNames.includes('WHOLESALE_USER') &&
+                    !authenticationService?.authService?.model
+                      ?.wholesaleUsers?.isApproved && product.discount > 0)
+                "
+              >
+                <span class="avatar-title rounded-circle bg-primary">
+                  -{{ product.discount }} %
+                </span>
+              </div>
+              <div
+                class="avatar-sm product-ribbon"
+                *ngIf="
+                  roleNames.includes('WHOLESALE_USER') &&
+                  authenticationService?.authService?.model?.wholesaleUsers
+                    ?.isApproved &&
+                  product?.wholesalePrice &&
+                  product?.wholesaleMinQuantity &&
+                  product?.wholesaleDiscount > 0
+                "
+              >
+                <span class="avatar-title rounded-circle bg-primary">
+                  -{{ product.wholesaleDiscount }} %
+                </span>
+              </div>
+              <a
+                *ngIf="product.media"
+                [routerLink]="['/products/detail/', product.id]"
+                href="javascript: void(0);"
+                ><img
+                  src="{{ product.media[0]?.url }}"
+                  alt=""
+                  class="img-fluid rounded mx-auto d-block img-style"
+              /></a>
+            </div>
+            <div class="mt-4 text-center">
+              <h5 class="mb-3 text-truncate">
+                <a
+                  [routerLink]="['./../detail/', product.id]"
+                  href="javascript: void(0);"
+                  class="text-dark"
+                  >{{ product.title }}
+                </a>
+              </h5>
+
+              <div
+                *ngIf="
+                  (!product.wholesalePrice &&
+                    !product.wholesaleMinQuantity) ||
+                  (!roleNames.includes('WHOLESALE_USER') &&
+                    !product.wholesalePrice &&
+                    !product.wholesaleMinQuantity) ||
+                  (!roleNames.includes('WHOLESALE_USER') &&
+                    product.wholesalePrice &&
+                    product.wholesaleMinQuantity) ||
+                    (roleNames.includes('WHOLESALE_USER') &&
+                    !authenticationService?.authService?.model
+                      ?.wholesaleUsers?.isApproved)
+                "
+              >
+                <h5 *ngIf="product.discount > 0" class="mb-4">
+                  <b
+                    >
+                    {{
+                      (
+                        product?.price -
+                        product?.price * (product?.discount / 100)
+                      ) | punctuation
+                    }} COP
+                  </b>
+                  <br />
+                  <span class="text-muted mr-2 mt-2"
+                    ><del> {{ product.price  | punctuation  }}</del></span
+                  >
+                </h5>
+                <h5
+                  *ngIf="
+                    product?.discount === null || product?.discount == 0
+                  "
+                  class="mb-4"
+                >
+                  <b>{{ product?.price  | punctuation  }} COP</b>
+                  <br />
+                  <span class="mr-2 mt-2" style="color: transparent"
+                    >.</span
+                  >
+                </h5>
+              </div>
+
+              <!---------------------------------------------------------------->
+
+              <div
+                *ngIf="
+                  product.wholesalePrice &&
+                  product.wholesaleMinQuantity &&
+                  roleNames.includes('WHOLESALE_USER') &&
+                  authenticationService?.authService?.model?.wholesaleUsers
+                    ?.isApproved
+                "
+              >
+                <h5 *ngIf="product.wholesaleDiscount > 0" class="mb-4">
+                  <b
+                    >$
+                    {{
+                      (
+                        product?.wholesalePrice -
+                        product?.wholesalePrice *
+                          (product?.wholesaleDiscount / 100)
+                      )  | punctuation
+                    }}
+                  </b>
+                  <br />
+                  <span class="text-muted mr-2 mt-2"
+                    ><del>{{ product.wholesalePrice  | punctuation  }}</del></span
+                  >
+                </h5>
+                <h5
+                  class="mb-4"
+                  *ngIf="
+                    product?.wholesaleDiscount === null ||
+                    product?.wholesaleDiscount == 0
+                  "
+                >
+                  <b>{{ product?.wholesalePrice   | punctuation }} </b>
+                </h5>
+              </div>
+
+              <p *ngIf="product.likesCount > 0 && product.userLike" class="font-size-15 mt-3">
+                <i (click)="like(product)" class="bx bxs-heart text-danger cursor-pointer"></i>
+                {{ product.likesCount }}
+              </p>
+
+              <p *ngIf="!product.userLike" class="font-size-15 mt-3">
+                <i (click)="like(product)" class="bx bx-heart text-danger cursor-pointer"></i>
+                {{ product.likesCount }}
+              </p>
+
+              <i (click)="addToCart(product)" class="bx bx-cart custom-icon-hover text-primary"></i>
+            </div>
+          </div>
+        </div>
+        </ng-template>
+      </owl-carousel-o>
+      </div>
+    </div>
+
+    <div class="row justify-content-between align-items-center">
+      <div class="col-auto">
+        <ul class="pagination pagination-rounded justify-content-end mb-2">
+          <ngb-pagination
+            [collectionSize]="service.total"
+            [(page)]="service.page"
+            [maxSize]="3"
+            [rotate]="true"
+            [pageSize]="service.limit"
+          >
+          </ngb-pagination>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,129 @@
+<div class="container-fluid" style="max-width: 90%">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body border-bottom">
+          <div class="row justify-content-end">
+            <div class="col-md-5">
+              <div class="d-flex justify-content-end gap-2">
+                <a (click)="clear()" class="btn btn-light"
+                  ><i class="mdi mdi-refresh"></i
+                ></a>
+                <a [routerLink]="['./forms']" class="btn btn-primary">
+                  <i class="bx bx-plus-medical align-middle"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="table-responsive">
+            <table
+              class="table table-centered table-nowrap table-hover align-middle"
+            >
+              <thead>
+                <tr>
+                  <th style="width: 10%"></th>
+                  <th
+                    sortable="title"
+                    (sort)="onSort($event)"
+                    style="width: 15%"
+                  >
+                    Titulo
+                  </th>
+                  <th style="width: 15%">Fecha de Inicio</th>
+                  <th style="width: 15%">Fecha de FInalizacion</th>
+                  <th style="width: 10%">Link</th>
+                  <th class="text-end">Acciones</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let item of (service.collection$ | async)?.data">
+                  <td>
+                    <div class="row d-flex justify-content-center" *ngIf="item?.media?.url">
+                      <img
+                        class="img-fluid cursor-pointer"
+                        [src]="item.media.url"
+                        alt="Promotion Image"
+                      />
+                    </div>
+                  </td>
+                  <td [ngClass]="{'text-warning': !item.title}">{{ item.title ?? 'No data' }}</td>
+                  <td>{{ item.startDate }}</td>
+                  <td>{{ item.endDate }}</td>
+                  <td>{{ item.link }}</td>
+                  <td>
+                    <div class="d-flex gap-2 justify-content-end">
+                      <button
+                        type="button"
+                        class="btn btn-outline-danger"
+                        (click)="delete(item.id)"
+                      >
+                        <i class="fa fa-trash"></i>
+                      </button>
+                      <a
+                        [routerLink]="['./forms', item.id]"
+                        class="btn btn-sm btn-primary"
+                      >
+                        Editar
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="row justify-content-between align-items-center">
+            <div class="col-auto me-auto">
+              <div class="dataTables_length" id="tickets-table_length">
+                <label class="d-inline-flex align-items-center"
+                  >Show
+                  <select
+                    aria-controls="tickets-table"
+                    name="pageSize"
+                    [formControl]="limitControl"
+                    class="custom-select custom-select-sm form-control form-control-sm mx-2"
+                  >
+                    <option [ngValue]="10">10</option>
+                    <option [ngValue]="25">25</option>
+                    <option [ngValue]="50">50</option>
+                    <option [ngValue]="100">100</option>
+                  </select>
+                  entries
+                </label>
+              </div>
+            </div>
+            <div class="col-auto me-auto">
+              <p class="mb-0">
+                Mostrando
+                <b>{{ service.from }}</b>
+                a <b>{{ service.to }}</b>
+                de
+                <b>{{ service.total }}</b>
+                entre
+              </p>
+            </div>
+
+            <div class="col-auto">
+              <ul
+                class="pagination pagination-rounded justify-content-end mb-2"
+              >
+                <ngb-pagination
+                  [collectionSize]="service.total"
+                  [(page)]="service.page"
+                  [maxSize]="3"
+                  [rotate]="true"
+                  [pageSize]="service.limit"
+                >
+                </ngb-pagination>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

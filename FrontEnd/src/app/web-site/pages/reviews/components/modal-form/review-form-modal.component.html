@@ -1,0 +1,74 @@
+<div class="modal-body rounded-4">
+  <div>
+    <h2 class="text-center text-primary">Reseña</h2>
+  </div>
+
+  <form
+    class="row justify-content-center p-4"
+    [formGroup]="group"
+  >
+    <div class="col-12">
+      <label class="float-start">Valoracion </label>
+    </div>
+    <div class="col-12 d-block mb-4">
+      <div class="valoration">
+        <button (click)="addValoration(5)">
+          <i [ngClass]="{'text-warning': valoration === 5}" class="mdi mdi-paw font-size-20"></i>
+        </button>
+        <button (click)="addValoration(4)">
+          <i [ngClass]="{'text-warning': valoration >= 4}" class="mdi mdi-paw font-size-20"></i>
+        </button>
+        <button (click)="addValoration(3)">
+          <i [ngClass]="{'text-warning': valoration >= 3}" class="mdi mdi-paw font-size-20"></i>
+        </button>
+        <button (click)="addValoration(2)">
+          <i [ngClass]="{'text-warning': valoration >= 2}" class="mdi mdi-paw font-size-20"></i>
+        </button>
+        <button (click)="addValoration(1)">
+          <i [ngClass]="{'text-warning': valoration >= 1}" class="mdi mdi-paw font-size-20"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="col-12 mb-4" id="title">
+      <label for="title">Titulo </label>
+      <input
+        min="2"
+        id="title"o
+        placeholder="Titulo "
+        formControlName="title"
+        type="text"
+        class="form-control"
+        autocomplete="new-data"
+        [ngClass]="ngClassValidate(group, 'title')"
+      />
+      <div *ngIf="submit && f" class="invalid-feedback">
+        <div *ngIf="f['title'].errors">Titulo no valido</div>
+      </div>
+    </div>
+
+    <div class="col-12 mb-4" id="content">
+      <label for="content"> Contenido </label>
+      <textarea
+        min="2"
+        id="content"
+        formControlName="content"
+        placeholder="Contenido"
+        type="text"
+        class="form-control"
+        autocomplete="new-data"
+        [ngClass]="ngClassValidate(group, 'content')"
+      >
+      </textarea>
+      <div *ngIf="submit && f" class="invalid-feedback">
+        <div *ngIf="f['content'].errors">Content must be valid</div>
+      </div>
+    </div>
+
+    <div class="col-md-2 mt-2 float-end align-self-end ms-auto">
+      <button (click)="ngSubmit()" type="submit" class="btn btn-outline-success">
+        Guardar <i class="bx bx-paper-plane"></i>
+      </button>
+    </div>
+  </form>
+</div>

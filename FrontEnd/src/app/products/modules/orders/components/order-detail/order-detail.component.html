@@ -1,0 +1,48 @@
+ <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <h4 class="fw-bold text-primary">Billed To:</h4>
+              <address class="font-size-14">
+                <p class="mb-1"><span class="fw-bold">A nombre de: </span>{{orderDetail?.firstName}} {{orderDetail?.lastName}}</p>
+                <p class="mb-1"><span class="fw-bold">Pais: </span>{{orderDetail.country}}</p>
+                <p class="mb-1"><span class="fw-bold">Ciudad: </span>{{orderDetail.city}}</p>
+                <p class="mb-1"><span class="fw-bold">Direccion: </span>{{orderDetail.address}}</p>
+                <p *ngIf="orderDetail.addressOptional" class="mb-1"><span class="fw-bold">Direccion Opcional: </span>{{orderDetail.addressOptional}}</p>
+                <p class="mb-1"><span class="fw-bold">Codigo Postal: </span>{{orderDetail.postalCode}}</p>
+                <p class="mb-1"><span class="fw-bold">Informacion opcional: </span>{{orderDetail.optional}}</p>
+              </address>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6 mt-3">
+              <h4 class="fw-bold text-primary">Payment Method:</h4>
+              <address class="font-size-14">
+                {{orderDetail?.payment?.provider}}<br>
+                {{orderDetail?.email}}
+              </address>
+            </div>
+            <div class="col-6 mt-3 text-sm-end">
+              <h4 class="fw-bold text-primary">Order Date:</h4>
+              <address class="font-size-14">
+                {{orderDetail.createdAt | date : "EEEE MMM dd yyyy"}}<br><br>
+              </address>
+            </div>
+          </div>
+
+
+          <div class="mt-5">
+            <h5><span class="text-success fw-bold me-2">Total</span> {{orderDetail?.payment?.value  | punctuation }} </h5>
+          </div>
+
+
+
+          <app-order-products-list></app-order-products-list>
+
+        </div>
+      </div>
+    </div>
+  </div>
+

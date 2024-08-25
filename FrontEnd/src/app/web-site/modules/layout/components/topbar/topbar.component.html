@@ -1,0 +1,180 @@
+<nav
+  class="navbar navbar-expand-lg navigation d-block p-0 border-0 fixed-top sticky"
+  (window:scroll)="windowScroll()"
+  id="navbar"
+>
+  <div class="container">
+    <!-- Logo -->
+    <a class="navbar-logo" routerLink="/">
+      <img
+        src="assets/images/logos/hotelLogo.png"
+        alt=""
+        height="70"
+        class="logo logo-dark"
+      />
+      <img
+        src="assets/images/logos/hotelLogo.png"
+        alt=""
+        height="70"
+        class="logo logo-light"
+      />
+    </a>
+
+    <!-- Toggle Button for Small Screens -->
+    <button
+      type="button"
+      class="btn btn-sm px-3 font-size-16 d-lg-none header-item"
+      data-toggle="collapse"
+      data-target="#topnav-menu-content"
+      (click)="toggleMenu()"
+    >
+      <i class="fa fa-fw fa-bars"></i>
+    </button>
+
+    <!-- Icons for Small Screens -->
+    <div class="d-flex align-items-center d-lg-none ms-auto">
+      <div class="d-flex align-items-center">
+        <div class="dropdown d-inline-block" ngbDropdown>
+          <button
+            routerLink="/products/orders"
+            type="button"
+            class="btn header-item noti-icon position-relative"
+          >
+            <i class="bx bx-cart"></i>
+            <span class="badge bg-danger rounded-pill">{{ countCart }}</span>
+          </button>
+        </div>
+        <div class="d-flex" *ngIf="!isLoggedIn; else accountMenuSmall">
+          <a
+            class="me-2 mt-2 text-decoration-underline text-primary"
+            routerLink="/account/auth/signup-2"
+          >
+            Registro
+          </a>
+          <button
+            routerLink="/account/auth/login-2"
+            class="btn bg-primary text-white b-width"
+          >
+            <span class="d-none d-md-inline">Inicio de Sesión</span>
+            <span class="d-inline d-md-none">Inicio</span>
+          </button>
+        </div>
+        <ng-template #accountMenuSmall>
+          <app-page-header-user-dropdown
+            [landing]="true"
+          ></app-page-header-user-dropdown>
+        </ng-template>
+      </div>
+
+      <!-- Settings Dropdown for Small Screens -->
+      <div class="dropdown d-inline-block" ngbDropdown>
+        <button
+          type="button"
+          class="btn header-item noti-icon"
+          id="page-header-settings-dropdown"
+          ngbDropdownToggle
+        >
+          <i class="bx bx-cog"></i>
+        </button>
+        <div
+          class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+          ngbDropdownMenu
+          aria-labelledby="page-header-settings-dropdown"
+        >
+          <div class="p-3">
+            <div class="row align-items-center">
+              <div class="col">
+                <h6 class="m-0">Configuración</h6>
+              </div>
+            </div>
+          </div>
+          <app-ngx-simplebar style="position: relative; height: 230px">
+
+          </app-ngx-simplebar>
+          <div class="p-2 border-top d-grid">
+            <a
+              class="btn btn-sm btn-link font-size-14 text-center"
+              href="javascript:void(0)"
+            >
+              <i class="mdi mdi-arrow-right-circle me-1"></i>
+              Reset
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Collapsible Menu -->
+    <div class="collapse navbar-collapse" id="topnav-menu-content">
+      <ul class="navbar-nav ms-auto" id="topnav-menu">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/products/portal">Tienda</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/meta/reviews">Reseñas</a>
+        </li>
+        <li class="nav-item" *ngIf="!isLoggedIn">
+          <a class="nav-link" routerLink="/wholesale-form">Mayoristas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/vendor/form">Proveedores</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/contact-us">Contáctenos</a>
+        </li>
+
+      </ul>
+
+      <!-- Icons for Larger Screens -->
+      <div class="d-none d-lg-flex align-items-center ms-auto">
+        <div class="dropdown d-inline-block" ngbDropdown>
+          <button
+            routerLink="/products/orders"
+            type="button"
+            class="btn header-item noti-icon position-relative"
+          >
+            <i class="bx bx-cart"></i>
+            <span class="badge bg-danger rounded-pill">{{ countCart }}</span>
+          </button>
+        </div>
+        <div class="d-flex align-items-center">
+          <div class="d-flex" *ngIf="!isLoggedIn; else accountMenu">
+            <a
+              class="me-4 mt-2 text-decoration-underline text-primary"
+              routerLink="/account/auth/signup-2"
+            >
+              Registro
+            </a>
+            <button
+              routerLink="/account/auth/login-2"
+              class="btn bg-primary text-white b-width"
+            >
+              Inicio
+            </button>
+          </div>
+
+          <ng-template #accountMenu>
+            <app-page-header-user-dropdown
+              [landing]="true"
+            ></app-page-header-user-dropdown>
+          </ng-template>
+        </div>
+
+        <!-- Settings Dropdown for Larger Screens -->
+
+      </div>
+    </div>
+  </div>
+  <div class="w-100 bg-primary text-center py-2"
+  *ngIf="
+  roleNames.includes('WHOLESALE_USER') &&
+   authenticationService?.authService?.model?.wholesaleUsers
+    ?.isApproved
+"
+  >
+    <h5 class="text-white font-weight-bold m-0">Portal Mayorista</h5>
+  </div>
+</nav>

@@ -1,0 +1,22 @@
+.items-ls{
+  padding: inherit;
+}
+
+
+hr {
+  width: 100px;
+  border: 1px solid rgb(68, 64, 64);
+}
+
+
+
+.valoration {
+  float: left;
+  display: flex;
+  // flex-direction: row-reverse;
+}
+.valoration button {
+  background-color: initial;
+  border: 0;
+  color: #5f5050;
+}

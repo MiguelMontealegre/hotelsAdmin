@@ -1,0 +1,31 @@
+.img-style {
+  width: auto !important;
+  height: 100%;
+  max-width: none;
+  max-height: 400px;
+}
+
+
+.sm-img-style {
+  width: 100% !important;
+  height: 100%;
+  max-width: none;
+  max-height: 400px;
+}
+
+
+.handle-lg-img {
+  display: block !important;
+  @media (max-width: 767px) {
+    display: none !important;
+  }
+}
+
+
+.handle-sm-img {
+  display: none !important;
+  @media (max-width: 767px) {
+    display: block !important;
+  }
+}
+

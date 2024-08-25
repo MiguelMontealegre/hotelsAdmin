@@ -1,0 +1,46 @@
+<div class="modal-content d-flex flex-column justify-content-center">
+    <div class="modal-header justify-content-center ">
+        <div class="text-center">
+            <a class="navbar-logo" routerLink="/">
+                <img
+                  src="assets/images/logos/hotelLogo.png"
+                  alt=""
+                  height="70"
+                  class="logo logo-dark"
+                />
+                <img
+                  src="assets/images/logos/hotelLogo.png"
+                  alt=""
+                  height="70"
+                  class="logo logo-light"
+                />
+              </a>
+        </div>
+    </div>
+    <owl-carousel-o [options]="carouselOption" class="events navs-carousel">
+        <ng-template carouselSlide *ngFor="let productPromotion of productPromotions">
+            <div class="item">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 m-auto">
+                            <img [src]="productPromotion.media" alt="Product Image" class="img-fluid" style="width: 100%;">
+                        </div>
+                        <div class="col-md-6 text-center align-items-lg-center my-auto">
+                            <h5 class="modal-title display-6">{{ productPromotion.title }}</h5>
+                            <h4>
+                                <span class="text-danger font-weight-bold display-6">{{ (productPromotion.discountPercentage/1).toFixed(0)}}% de descuento</span>
+                            </h4>
+                            <p class="discount mt-3 mb-4">{{ productPromotion.description }}</p>
+                            <div class="text-center mb-4">
+                                <a href="{{ productPromotion.link }}" class="btn btn-primary btn-lg">¡Descubre la oferta ahora!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </owl-carousel-o>
+
+
+
+</div>

@@ -1,0 +1,137 @@
+<footer class="landing-footer footer-bg overflow-wrap: break-word">
+  <div class="container">
+    <div class="row">
+      <!-- Columna 1 -->
+      <div class="col-md-4 col-sm-12 justify-content-center">
+        <div class="row">
+          <div class="col-md-12 col-sm-6 col-6">
+            <div class="footer-logo  d-flex align-items-center justify-content-center">
+              <img src="assets/images/logos/logo.png" alt="" class="logo logo-dark img-fluid" />
+            </div>
+            <h1 class=" fw-bold text-light text-center cursor-pointer mb-0">Lazo</h1>
+            <p>Comercializadora de accesorios para mascota</p>
+          </div>
+          <div class="col-md-12 col-sm-6 col-6">
+            <div class="col-12 d-flex flex-wrap">
+              <div class="col-md-2 d-flex justify-content-center align-items-center">
+                <div class="mx-1">
+                  <img class="img-fluid rounded" width="20" src="assets/images/homepage/icons/ubi-light.png" alt="" />
+                </div>
+              </div>
+              <div class="col-10 my-1">
+                <h5 class="mb-1 footer-list-title small">Kr 13 #10-72 - San Victorino</h5>
+                <h5 class="footer-list-title small">Cl. 10 #16-17 - Voto Nacional</h5>
+              </div>
+            </div>
+            <div class="col-12 d-flex flex-wrap">
+              <div class="col-md-2 d-flex justify-content-center align-items-center">
+                <div class="mx-1">
+                  <img class="img-fluid rounded" width="20" src="assets/images/homepage/icons/cell.png" alt="" />
+                </div>
+              </div>
+              <div class="col-10 my-1">
+                <h5 class="mb-1 footer-list-title small">+57 (321) 380-7861</h5>
+                <h5 class="footer-list-title small">+57 (311) 291-0815</h5>
+              </div>
+            </div>
+            <div class="col-12 d-flex flex-wrap align-content-around">
+              <div class="col-md-2 d-flex justify-content-center align-items-center">
+                <div class="mx-1">
+                  <img class="img-fluid rounded" width="20" src="assets/images/homepage/icons/email-light.png" alt="" />
+                </div>
+              </div>
+              <div class="col-10 my-1">
+                <h5 class="footer-list-title text-sm-start small" style="overflow-wrap: break-word;">servicioalcliente@lazomascotas.com</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna 2 -->
+      <div class="col-md-4 col-sm-6 col-6 justify-content-center">
+        <div class="row ms-1">
+          <div class="col-md-6">
+            <h5 class="mb-3 footer-list-title">Tienda</h5>
+            <ul class="list-unstyled footer-list-menu" *ngFor="let item of animalsCategories">
+              <li>
+                <a rel="stylesheet" [routerLink]="['/products/portal']" [queryParams]="{ categoryId: item?.id }">{{ item.title }}</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <h5 class="mb-3 footer-list-title">Mayoristas</h5>
+            <ul class="list-unstyled footer-list-menu">
+              <li *ngIf="!isLoggedIn">
+                <a rel="stylesheet" [routerLink]="['/wholesale-form']">Regístrate</a>
+              </li>
+              <li *ngIf="!isLoggedIn">
+                <a rel="stylesheet" [routerLink]="['/account/auth/login-2']">Ingresar</a>
+              </li>
+              <li *ngIf="isLoggedIn">
+                <a rel="stylesheet" [routerLink]="['/products/portal']">Portal Mayoristas</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <h5 class="mb-3 footer-list-title">Proveedores</h5>
+            <ul class="list-unstyled footer-list-menu">
+              <li *ngIf="!isLoggedIn">
+                <a class="nav-link" [routerLink]="['/vendor/form']">Únete como proveedor</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna 3 -->
+      <div class="col-md-4 col-sm-6 col-6 justify-content-center">
+        <div class="col-12">
+          <h5 class="mb-3 footer-list-title">Carrito</h5>
+          <ul class="list-unstyled footer-list-menu">
+            <li>
+              <a class="nav-link" [routerLink]="['/products/orders']">Comprar Ahora</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <img src="assets/images/homepage/icons/pagos.png" alt="" class="logo logo-dark img-fluid" />
+        </div>
+      </div>
+    </div>
+    <!-- Fin fila -->
+
+    <hr class="footer-border my-5" />
+    <div class="row justify-content-end align-items-end">
+      <div class="col-md-6 d-flex justify-content-center d-lg-flex">
+        <h4 class="footer-list-title">Encuéntranos en:</h4>
+        <div class="d-flex ms-1">
+          <div class="d-flex justify-content-center align-items-center mx-1">
+            <a href="https://www.instagram.com/lazomascotas?igsh=MTM0Z2UxZW92cmNudw%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">
+              <img class="img-fluid rounded" width="30" src="assets/images/homepage/icons/instagram.png" alt="Instagram" />
+            </a>
+          </div>
+          <div class="d-flex justify-content-center align-items-center mx-1">
+            <a href="https://www.facebook.com/share/1sDVs7X5kspEAM9C/?mibextid=LQQJ4d" target="_blank" rel="noopener noreferrer">
+              <img class="img-fluid rounded" width="30" src="assets/images/homepage/icons/meta.png" alt="Meta" />
+            </a>
+          </div>
+          <div class="d-flex justify-content-center align-items-center mx-1">
+            <a href="https://www.tiktok.com/@lazomascotas?_t=8nrIHU1aO98&_r=1" target="_blank" rel="noopener noreferrer">
+              <img class="img-fluid rounded" width="30" src="assets/images/homepage/icons/tiktok.png" alt="TikTok" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <p class="mb-2">{{ year }} © Lazo.</p>
+        <p>Un Lazo con tu mascota. Descubre nuestra línea exclusiva de productos para tu fiel compañero.</p>
+      </div>
+    </div>
+  </div>
+  <!-- Fin contenedor -->
+</footer>
+

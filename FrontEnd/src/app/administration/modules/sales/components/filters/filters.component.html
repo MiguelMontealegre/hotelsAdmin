@@ -1,0 +1,89 @@
+<div class="card mini-stats-wid">
+  <div class="p-3 pb-0">
+    <div class="row">
+      <div class="col-12 col-md">
+        <div class="row align-items-center">
+          <div class="col-12 col-md-6">
+            <div class="mb-3">
+              <div class="col-12">
+                <div class="input-group mb-3">
+                  <ng-template #t let-date let-focused="focused">
+                    <span
+                      class="custom-day"
+                      [class.focused]="focused"
+                      [class.range]="isRange(date)"
+                      [class.faded]="isHovered(date) || isInside(date)"
+                      (mouseenter)="hoveredDate = date"
+                      (mouseleave)="hoveredDate = null">
+                      {{ date.day }}
+                    </span>
+                  </ng-template>
+                  <input
+                    #dpFromDate
+                    class="form-control"
+                    placeholder="mm-dd-yyyy"
+                    name="dpFromDate"
+                    (click)="datepicker.toggle()"
+                    [value]="formatter.format(fromDate)"
+                    (input)="(dpFromDate.value)" />
+                  <input
+                    width="1%"
+                    name="datepicker"
+                    class="form-control position-absolute invisible"
+                    ngbDatepicker
+                    #datepicker="ngbDatepicker"
+                    [autoClose]="'outside'"
+                    (dateSelect)="onDateSelection($event, datepicker)"
+                    [displayMonths]="2"
+                    [dayTemplate]="t"
+                    outsideDays="hidden"
+                    [startDate]="fromDate!"
+                    tabindex="-1" />
+                  <span class="input-group-text">To</span>
+                  <input
+                    #dpToDate
+                    class="form-control"
+                    placeholder="mm-dd-yyyy"
+                    name="dpToDate"
+                    (click)="datepicker.toggle()"
+                    [value]="formatter.format(toDate)"
+                    (input)="(dpToDate.value)" />
+                  <button
+                    class="btn btn-outline-secondary bi bi-calendar3"
+                    (click)="datepicker.toggle()"
+                    type="button">
+                    <i class="bx bx-calendar me-1"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-2">
+            <div class="mb-3">
+              <ng-select
+                bindValue="value"
+                class="form-control"
+                [items]="groupByItems"
+                [multiple]="false"
+                [(ngModel)]="groupByFilter"
+                (change)="changeFilter($event, 'groupBy')"
+                bindLabel="label"
+                placeholder="Group By ?">
+              </ng-select>
+            </div>
+          </div>
+          <div class="col-12 col-md-auto">
+            <div class="mb-3">
+              <button
+                class="btn btn-outline-primary btn-sm"
+                role="button"
+                (click)="clearFilters()">
+                Limpiar Filtros
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

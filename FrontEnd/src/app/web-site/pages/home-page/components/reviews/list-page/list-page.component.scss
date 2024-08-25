@@ -1,0 +1,33 @@
+.img-style{
+  height:  200px !important;
+  width:  250px !important;
+}
+
+
+.valoration {
+  float: left;
+  display: flex;
+  // flex-direction: row-reverse;
+}
+.valoration button {
+  background-color: initial;
+  border: 0;
+  color: #5f5050;
+}
+
+
+.overflow-ellipsis-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.content-size {
+  max-height: 80px;
+  overflow: scroll;
+}
+
+
+.p-1-custom {
+  padding: 0.30rem !important;
+}

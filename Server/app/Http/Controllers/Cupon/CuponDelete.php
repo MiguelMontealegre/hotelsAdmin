@@ -1,0 +1,27 @@
+<?php
+declare(strict_types=1);
+
+namespace App\Http\Controllers\Cupon;
+
+use App\Http\Controllers\Base\BaseDelete;
+use App\Models\Cupon;
+
+/**
+ * Class CategoryDelete
+ *
+ * @extends  BaseDelete BaseDelete
+ * @category Controllers
+ * @package  App\Http\Controllers\Region
+ * @author   Jignesh Parmar <jignesh.parmar@tsolife.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://tsolife.com
+ */
+class CuponDelete extends BaseDelete
+{   
+
+    /**
+     * @var string
+     */
+    public string $modelClass = Cupon::class;
+
+}//end class

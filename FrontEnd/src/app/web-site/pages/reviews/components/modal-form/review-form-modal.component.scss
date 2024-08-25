@@ -1,0 +1,45 @@
+
+// VALORATIONS
+.ratingsHov:hover {
+  --bs-text-opacity: 1;
+    color: rgba(var(--bs-warning-rgb), var(--bs-text-opacity)) !important;
+    font-size: 25px;
+}
+
+.valoration {
+  float: left;
+  display: flex;
+  flex-direction: row-reverse;
+}
+.valoration button {
+  background-color: initial;
+  border: 0;
+  color: #5f5050;
+  transition: 1s all;
+}
+.valoration button:hover {
+  cursor: pointer;
+  color: #f1b44c;
+  transform: rotate(360deg);
+}
+button:nth-child(1):hover ~ button {
+  color: #f1b44c;
+  transform: rotate(360deg);
+}
+button:nth-child(2):hover ~ button {
+  color: #f1b44c;
+  transform: rotate(360deg);
+}
+button:nth-child(3):hover ~ button {
+  color: #f1b44c;
+  transform: rotate(360deg);
+}
+button:nth-child(4):hover ~ button {
+  color: #f1b44c;
+  transform: rotate(360deg);
+}
+button:nth-child(5):hover ~ button {
+  color: #f1b44c;
+  transform: rotate(360deg);
+}
+//END VALORATIONS
