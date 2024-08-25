@@ -2,19 +2,16 @@
 
 namespace App\Models;
 
-use App\Models\User;
-use App\Models\Payment;
-use App\Models\Passenger;
+use App\Models\Order;
 use App\Traits\UuidTrait;
 use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Order extends Model
+class Passenger extends Model
 {
-	use HasFactory, UuidTrait, Searchable, SoftDeletes;
+    use UuidTrait, Searchable, SoftDeletes;
 
 	protected $primaryKey = 'id';
 
@@ -32,12 +29,16 @@ class Order extends Model
 	const DELETED_AT = 'deletedAt';
 
 
-	protected $fillable = [
-		'status',
-		'paymentId', 
-		'date', 
-		'emergencyContactName', 
-		'emergencyContactPhone',
+
+    protected $fillable = [
+        'identification',
+		'name',
+		'birthdate', 
+		'email', 
+        'phone',
+        'idType',
+        'gender',
+        'orderId'
 	];
 
 
@@ -49,9 +50,7 @@ class Order extends Model
     public function toSearchableArray(): array
     {
 		return [
-            'city'           => $this->city,
-            'payments.value'           => $this->payment()->value('value'),
-			'payments.provider'           => $this->payment()->value('provider'),
+            'name'           => $this->name,
         ];
 
     }//end toSearchableArray()
@@ -63,16 +62,10 @@ class Order extends Model
      *
      * @return BelongsTo
      */
-    public function payment(): BelongsTo
+    public function order(): BelongsTo
     {
-        return $this->belongsTo(Payment::class, 'paymentId');
+        return $this->belongsTo(Order::class, 'orderId');
 
     }//end user()
 
-	//relacioon de un order a muchos orderProducts
-
-	
-	public function passengers(){
-		return $this->hasMany(Passenger::class,'orderId');
-	}
 }

@@ -13,10 +13,6 @@ import {
   NgbTooltipModule,
 } from '@ng-bootstrap/ng-bootstrap';
 
-import { EventService } from '@services/layout/event.service';
-import { LightboxModule } from 'ngx-lightbox';
-import { ModelService } from '@services/common/model.service';
-import { Ng5SliderModule } from 'ng5-slider';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -24,17 +20,13 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { TranslateModule } from '@ngx-translate/core';
 import { UiModule } from '@modules/ui/ui.module';
 import { ChartsModule } from 'ng2-charts';
-import { UiSwitchModule } from 'ngx-ui-switch';
-import { WidgetModule } from '@modules/widget/widget.module';
 import { HTTP_INTERCEPTORS, HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 import { GenericServicesModule } from '@modules/generic-services/generic-services.module';
 import { ApiInterceptor } from '@interceptors/api.interceptor';
 import { CustomDateAdapter } from '@utils/custom-date-adapter';
 import { MainDataComponent } from './components/main-data/main-data.component';
-import { filter } from 'rxjs';
 import { FiltersComponent } from './components/filters/filters.component';
 import { SalesUserComponent } from './components/sales-user/sales-user.component';
-import { SaleProductsComponent } from './components/sale-products/sale-products.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +34,6 @@ import { SaleProductsComponent } from './components/sale-products/sale-products.
     MainDataComponent,
     FiltersComponent,
     SalesUserComponent,
-    SaleProductsComponent
   ],
   imports: [
     CommonModule,

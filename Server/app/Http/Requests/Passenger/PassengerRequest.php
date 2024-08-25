@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Http\Requests\Order;
+namespace App\Http\Requests\Passenger;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class OrderRequest extends FormRequest
+class PassengerRequest extends FormRequest
 {
 
 
@@ -31,13 +31,7 @@ class OrderRequest extends FormRequest
     {
 
         return [
-			'status' => ['required', 'string'],
-            'date' => ['required', 'date'],
-			'paymentId'             => [
-                'required',
-                'uuid',
-                'exists:payments,id',
-            ],
+			'name' => ['required', 'string'],
         ];
 
     }//end rules()

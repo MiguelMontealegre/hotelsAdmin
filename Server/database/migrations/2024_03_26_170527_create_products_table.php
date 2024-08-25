@@ -22,6 +22,8 @@ return new class extends Migration
 			$table->float('type')->nullable();
             $table->float('availableQuantity')->nullable();
 
+            $table->boolean('pin')->default(false);
+
             $table->uuid('hotelId');
             $table->foreign('hotelId')
                 ->references('id')

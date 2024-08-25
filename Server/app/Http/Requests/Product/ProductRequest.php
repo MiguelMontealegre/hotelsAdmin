@@ -35,7 +35,7 @@ class ProductRequest extends FormRequest
 			'description' => request()->isMethod('put') ? ['string', 'nullable'] : ['required', 'string'],
 			'price' => request()->isMethod('put') ? ['integer', 'nullable'] : ['integer', 'required'],
 
-			'hotelId' => ['string', 'required'],
+			'hotelId' => request()->isMethod('put') ? ['uuid', 'nullable'] : ['uuid', 'required'],
 
 			'discount' => ['integer', 'nullable'],
 			'availableQuantity' => request()->isMethod('put') ? ['integer', 'nullable'] : ['integer', 'required'],

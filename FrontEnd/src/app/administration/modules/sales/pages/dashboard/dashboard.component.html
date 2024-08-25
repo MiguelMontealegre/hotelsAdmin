@@ -3,7 +3,7 @@
       title="Ventas"
       [breadcrumbItems]="breadCrumbItems"
     ></app-page-title>
-  
+
     <app-filters
       (dateFiltersEmit)="filterArray('dateRange', $event)"
       (groupByFilterEmit)="filterArray('groupBy', $event)"
@@ -11,7 +11,7 @@
       (clearFiltersEmit)="clearFiltersEmit($event)"
     >
     </app-filters>
-  
+
     <div class="row">
       <!---->
       <div class="col-md-4 mb-4">
@@ -49,9 +49,9 @@
           </div>
         </div>
       </div>
-  
+
       <!---->
-  
+
       <div class="col-md-4 mb-4">
         <div class="card m-0 h-100">
           <div class="card-header bg-transparent">
@@ -88,9 +88,9 @@
         </div>
       </div>
       <!---->
-  
+
        <!---->
-  
+
        <div class="col-md-4 mb-4">
         <div class="card m-0 h-100">
           <div class="card-header bg-transparent">
@@ -126,11 +126,11 @@
       </div>
       <!---->
     </div>
-  
+
     <div id="chart">
       <div *ngFor="let cat of graphicParams; let i = index">
         <div class="row mb-4" *ngIf="0 === i % 2">
-          <div 
+          <div
             class="col-6"
             [ngClass]="{ 'col-12': graphicParams[i].chart === 'VENTAS' }"
           >
@@ -142,15 +142,15 @@
             >
             </app-main-data>
           </div>
-  
+
           <div
             class="col-6"
             [ngClass]="{ 'col-12': graphicParams[i + 1]?.chart === 'VENTAS' }"
           >
             <app-main-data
               *ngIf="i <= graphicParams.length - 2"
-            
-           
+
+
               [category]="graphicParams[i + 1].chart"
               [type]="graphicParams[i + 1].type"
               [title]="graphicParams[i + 1].title"
@@ -162,19 +162,15 @@
     </div>
     <div id="salesUser">
       <app-sales-user>
-        
+
       </app-sales-user>
     </div>
     <div id="salesProduct">
- <app-sale-products>
-  
- </app-sale-products>
     </div>
-  
+
     <ng-template #empty>
       <div class="d-flex justify-content-center align-items-center mt-5">
         <h4 class="text-center">No Data</h4>
       </div>
     </ng-template>
   </div>
-  

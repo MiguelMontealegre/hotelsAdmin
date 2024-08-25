@@ -1,0 +1,272 @@
+<div class="modal-body">
+  <div class="row justify-content-center">
+    <div class="p-5">
+      <h2 class="text-center text-primary">Agenda tu suite</h2>
+
+
+      <form class="row mt-5" [formGroup]="group" (ngSubmit)="ngSubmit()">
+        <div class="mb-3 col-md-6 mb-4">
+          <label for="expirationDate"> Fecha </label>
+          <div class="input-group">
+            <input
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              name="date"
+              formControlName="date"
+              [formControl]="f.date"
+              ngbDatepicker
+              #startDatePicker="ngbDatepicker"
+              [ngClass]="{ 'is-invalid': f['date'].errors}"
+
+            />
+
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-secondary"
+                (click)="startDatePicker.toggle()"
+                type="button"
+              >
+                <i class="mdi mdi-calendar"></i>
+              </button>
+            </div>
+          </div>
+          <div *ngIf="submit && f" class="invalid-feedback">
+            <div *ngIf="f['date'].errors">
+            Fecha de Expiracion debe ser Valida
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4" id="emergencyContactName">
+          <label for="emergencyContactName"> Nombre de contacto de emergencia </label>
+          <input id="emergencyContactName" placeholder="Nombre" formControlName="emergencyContactName" type="text" class="form-control"
+            autocomplete="new-data" [ngClass]="ngClassValidate(group, 'emergencyContactName')" />
+          <div *ngIf="submit && f" class="invalid-feedback">
+            <div *ngIf="f['emergencyContactName'].errors">El Nombre debe ser válido</div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4" id="emergencyContactPhone">
+          <label for="emergencyContactPhone"> telefono de contacto de emergencia </label>
+          <input id="emergencyContactPhone" placeholder="telefono" formControlName="emergencyContactPhone" type="number" class="form-control"
+            autocomplete="new-data" [ngClass]="ngClassValidate(group, 'emergencyContactPhone')" />
+          <div *ngIf="submit && f" class="invalid-feedback">
+            <div *ngIf="f['emergencyContactPhone'].errors">El telefono debe ser válido</div>
+          </div>
+        </div>
+      </form>
+
+
+
+      <h3>Pasajeros</h3>
+      <form class="row mt-5" [formGroup]="bookingGroup" (ngSubmit)="addPassenger()">
+        <div class="col-md-6 mb-4" id="name">
+          <label for="name"> Nombre </label>
+          <input id="name" placeholder="Nombre" formControlName="name" type="text" class="form-control"
+            autocomplete="new-data" [ngClass]="ngClassValidatePassenger(bookingGroup, 'name')" />
+          <div *ngIf="submit && bookingF" class="invalid-feedback">
+            <div *ngIf="bookingF['name'].errors">El Nombre debe ser válido</div>
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-4" id="email">
+          <label for="email"> Email </label>
+          <input id="email" placeholder="email" formControlName="email" type="text" class="form-control"
+            autocomplete="new-data" [ngClass]="ngClassValidatePassenger(bookingGroup, 'email')" />
+          <div *ngIf="submit && bookingF" class="invalid-feedback">
+            <div *ngIf="bookingF['email'].errors">El Email debe ser válido</div>
+          </div>
+        </div>
+
+
+        <div class="col-md-6 mb-4" id="phone">
+          <label for="phone"> telefono </label>
+          <input id="phone" placeholder="telefono" formControlName="phone" type="number" class="form-control"
+            autocomplete="new-data" [ngClass]="ngClassValidatePassenger(bookingGroup, 'phone')" />
+          <div *ngIf="submit && bookingF" class="invalid-feedback">
+            <div *ngIf="bookingF['phone'].errors">El telefono debe ser válido</div>
+          </div>
+        </div>
+
+
+
+        <div class="mb-3 col-md-6 mb-4">
+          <label for="birthdate"> Fecha </label>
+          <div class="input-group">
+            <input
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              name="birthdate"
+              formControlName="birthdate"
+              [formControl]="bookingF.birthdate"
+              ngbDatepicker
+              #birthDatePicker="ngbDatepicker"
+              [ngClass]="{ 'is-invalid': bookingF['birthdate'].errors}"
+
+            />
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-secondary"
+                (click)="birthDatePicker.toggle()"
+                type="button"
+              >
+                <i class="mdi mdi-calendar"></i>
+              </button>
+            </div>
+          </div>
+          <div *ngIf="submit && bookingF" class="invalid-feedback">
+            <div *ngIf="bookingF['birthdate'].errors">
+            Fecha de Expiracion debe ser Valida
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="col-md-6 mb-4" id="identification">
+          <label for="identification"> identification </label>
+          <input id="identification" placeholder="identification" formControlName="identification" type="number" class="form-control"
+            autocomplete="new-data" [ngClass]="ngClassValidatePassenger(bookingGroup, 'identification')" />
+          <div *ngIf="submit && bookingF" class="invalid-feedback">
+            <div *ngIf="bookingF['identification'].errors">El Id debe ser válido</div>
+          </div>
+        </div>
+
+
+
+        <div class="col-md-6 mb-4">
+          <label for="category"> Gender </label>
+          <div class="d-flex">
+            <select class="ms-1 w-100"
+              placeholder="Gender"
+              formControlName="gender"
+              class="form-control"
+              [ngClass]="ngClassValidatePassenger(bookingGroup, 'gender')"
+              >
+              <option *ngFor="let item of genders" value="item">{{item}}</option>
+            </select>
+            <div *ngIf="submit && bookingF" class="invalid-feedback">
+              <div *ngIf="bookingF['gender'].errors">
+                El genero debe ser válida
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-12 mb-4">
+          <label for="category"> Tipo de documento </label>
+          <div class="d-flex">
+            <select class="ms-1 w-100"
+              placeholder="Gender"
+              formControlName="idType"
+              class="form-control"
+              [ngClass]="ngClassValidatePassenger(bookingGroup, 'idType')"
+              >
+              <option *ngFor="let item of idTypes" value="item">{{item}}</option>
+            </select>
+            <div *ngIf="submit && bookingF" class="invalid-feedback">
+              <div *ngIf="bookingF['idType'].errors">
+                El tipo de documento debe ser válido
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-3">
+          <button type="submit" class="btn btn-soft-primary">Añadir pasajero</button>
+        </div>
+      </form>
+
+
+
+      <div class="card" *ngIf="passengers.length > 0">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table
+              class="table table-centered table-nowrap table-hover align-middle"
+            >
+              <thead>
+                <tr>
+                  <th>Título</th>
+                  <th>email</th>
+                  <th>telefono</th>
+                  <th>tipo documento</th>
+                  <th>documento</th>
+                  <th>genero</th>
+                  <th class="text-end">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of passengers;let i = index">
+                  <td>{{ data.name }}</td>
+                  <td>{{ data.email }}</td>
+                  <td>{{ data.phone }}</td>
+                  <td>{{ data.idType }}</td>
+                  <td>{{ data.identification }}</td>
+                  <td>{{ data.gender }}</td>
+                  <td>
+                    <div class="d-flex gap-2 justify-content-end">
+                      <button
+                        type="button"
+                        class="btn btn-outline-danger"
+                        (click)="deletePassenger(i)"
+                      >
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row justify-content-center p-4">
+
+      <div class="col-5 my-md-2">
+        <div
+          class="bg-white shadow-lg cursor-pointer"
+          (click)="ngSubmitAndPay('paypal')"
+        >
+          <div class="d-flex justify-content-center">
+            <img
+              src="assets/images/providers/paypal1.svg"
+              class="rounded-circle"
+              width="40"
+              height="40"
+              alt=""
+            />
+          </div>
+          <div class="d-flex justify-content-center">
+            <p class="text-center text-sm">PayPal</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-5 my-md-2">
+        <div
+          class="bg-white shadow-lg cursor-pointer"
+          (click)="ngSubmitAndPay('mercadopago')"
+        >
+          <div class="d-flex justify-content-center">
+            <img
+              src="assets/images/providers/mercado-pago.svg"
+              class="rounded-circle"
+              width="40"
+              height="40"
+              alt=""
+            />
+          </div>
+          <div class="d-flex justify-content-center">
+            <p class="text-center text-sm">Mercado Pago</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

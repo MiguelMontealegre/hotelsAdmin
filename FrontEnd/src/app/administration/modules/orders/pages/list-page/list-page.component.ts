@@ -27,16 +27,16 @@ export class ListPageComponent extends CollectionComponent<Order> {
 
   statusItems = [
     {
-      label: 'En tienda',
-      value: 'STORE'
+      label: 'Reservado',
+      value: 'RESERVED'
     },
     {
-      label: 'En distribucion',
-      value: 'DISTRIBUTION'
+      label: 'Despachado',
+      value: 'DISPATCHED'
     },
     {
-      label: 'Entregado',
-      value: 'DELIVERED'
+      label: 'Finalizado',
+      value: 'FINISHED'
     }
   ];
 
@@ -57,24 +57,24 @@ export class ListPageComponent extends CollectionComponent<Order> {
   editingIndex: number;
   editingData: any;
   originalStatus: string; // Variable para almacenar el estado original
-  
+
   editStatus(data: Order ,index: number) {
     this.editingStatus = true;
     this.editingIndex = index;
     this.editingData = { ...data };
     this.originalStatus = data.status// Almacena el estado original al iniciar la edición
   }
-  
+
   cancelEdit() {
     this.editingStatus = false;
   }
-  
+
   saveStatus(data: Order) {
     if (data.status === this.originalStatus) {
       this.toastr.warning('No se realizaron cambios.');
-      return;  
+      return;
     }
-  
+
     this.api.put(`/${data.id}`, data).subscribe(
       response => {
         this.toastr.success('Cambios Aplicados.');
@@ -86,10 +86,10 @@ export class ListPageComponent extends CollectionComponent<Order> {
         this.clear();
       }
     );
-  
+
     this.editingStatus = false;
   }
-  
+
   delete(model: Order) {
     Swal.fire({
       title: '¿Estás seguro?',

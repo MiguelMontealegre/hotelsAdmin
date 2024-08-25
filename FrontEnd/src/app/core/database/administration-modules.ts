@@ -46,7 +46,7 @@ export const dataModules: MenuItem[] = [
       },
       {
         id: 16,
-        label: 'Ordenes',
+        label: 'Reservas',
         icon: 'bx-collection',
         link: '/admin/orders/',
       }

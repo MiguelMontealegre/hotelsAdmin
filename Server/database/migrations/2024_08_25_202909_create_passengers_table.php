@@ -13,20 +13,23 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('passengers', function (Blueprint $table) {
             $table->uuid('id')->primary();
-			$table->string('status');
-            $table->dateTime('date');
+			$table->string('name');
+            $table->dateTime('birthdate');
+            $table->string('email');
+            $table->string('phone');
+            $table->string('idType');
+            $table->string('identification');
+            $table->string('gender');
 
-            $table->string('emergencyContactName');
-            $table->string('emergencyContactPhone');
-
-			$table->uuid('paymentId')->nullable();
-			$table->foreign('paymentId')
+            $table->uuid('orderId')->nullable();
+			$table->foreign('orderId')
 				->references('id')
-				->on('payments')
+				->on('orders')
 				->onDelete('restrict')
 				->onUpdate('restrict');
+
 
 			$table->timestamp('updatedAt')->useCurrent()->useCurrentOnUpdate();
             $table->timestamp('createdAt')->useCurrent();
@@ -41,6 +44,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('passengers');
     }
 };

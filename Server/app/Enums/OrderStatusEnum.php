@@ -12,7 +12,7 @@ namespace App\Enums;
  */
 enum OrderStatusEnum: string
 {
-    case STORE  = 'STORE';
-    case DISTRIBUTION    = 'DISTRIBUTION';
-    case DELIVERED = 'DELIVERED';
+    case RESERVED  = 'RESERVED';
+    case DISPATCHED    = 'DISPATCHED';
+    case FINISHED = 'FINISHED';
 }//end enum

@@ -57,10 +57,15 @@ use App\Http\Controllers\Category\CategoryCreate;
 use App\Http\Controllers\Category\CategoryDelete;
 use App\Http\Controllers\Category\CategoryDetail;
 use App\Http\Controllers\Category\CategoryUpdate;
+use App\Http\Controllers\Passenger\PassengerList;
 use App\Http\Controllers\Promotion\PromotionList;
 use App\Http\Controllers\Review\ReviewController;
 use App\Http\Controllers\Wholesale\WholesaleList;
 use App\Http\Controllers\Auth\LoginUserController;
+use App\Http\Controllers\Passenger\PassengerCreate;
+use App\Http\Controllers\Passenger\PassengerDelete;
+use App\Http\Controllers\Passenger\PassengerDetail;
+use App\Http\Controllers\Passenger\PassengerUpdate;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Promotion\PromotionDelete;
 use App\Http\Controllers\Promotion\PromotionDetail;
@@ -224,13 +229,15 @@ Route::prefix('tags')
     });
 
 
-Route::prefix('vendor-products') 
-->middleware(['auth:sanctum', IsAdmin::class])
+    Route::prefix('passengers')
     ->group(function () {
-        Route::get('/', [VendorProductsList::class, 'list']);
-        Route::get('/{vendorProduct}', [VendorProductsDetail::class, 'show']);
-        Route::delete('/{vendorProduct}', [VendorProductsDelete::class, 'delete']);
+        Route::get('/', [PassengerList::class, 'list']);
+        Route::get('/{passenger}', [PassengerDetail::class, 'show']);
+        Route::post('/', [PassengerCreate::class, 'create']);
+        Route::put('/{passenger}', [PassengerUpdate::class, 'update']);
+        Route::delete('/{passenger}', [PassengerDelete::class, 'delete']);
     });
+
 
 Route::prefix('reviews')
     ->group(function () {
@@ -241,18 +248,6 @@ Route::prefix('reviews')
         Route::put('/{review}', [ReviewUpdate::class, 'update']);
         Route::delete('/{review}', [ReviewDelete::class, 'delete']);
     });
-
-	Route::prefix('cart-products')
-	->group(function () {
-		Route::get('/prices', [CartProductController::class, 'prices']);
-        Route::get('/get-cart', [CartProductController::class, 'getCartCount']);
-		Route::get('/', [CartProductList::class, 'list']);
-		Route::get('/{cartProduct}', [CartProductDetail::class, 'show']);
-		Route::post('/', [CartProductCreate::class, 'create']);
-		Route::post('/add-product', [CartProductController::class, 'addProduct']);
-		Route::put('/{cartProduct}', [CartProductUpdate::class, 'update']);
-		Route::delete('/{cartProduct}', [CartProductDelete::class, 'delete']);
-	});
 
 
 	Route::prefix('payments')
@@ -353,20 +348,6 @@ Route::prefix('helper')
 
 //---------------------------------------------------
 
-
-Route::prefix('whosale')
-	->middleware(['auth:sanctum'])
-	->group(function () {
-		Route::get('', [WholesaleList::class, 'list'])->middleware([IsAdmin::class]);
-		Route::post('/accept', [WholesaleController::class, 'accept'])->middleware([IsAdmin::class]);
-		Route::post('/deny', [WholesaleController::class, 'deny'])->middleware([IsAdmin::class]);
-	});
-
-
-Route::prefix('vendor')
-    ->group(function () {
-        Route::post('/create', [VendorProductsController::class, 'providerRequest']);
-    });
 
 Route::prefix('promotions')
     ->middleware(['auth:sanctum'])

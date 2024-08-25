@@ -36,14 +36,10 @@ class PaymentRequest extends FormRequest
                 'uuid',
                 'exists:users,id',
             ],
-			'billingDetails.firstName' => ['required', 'string'],
-			'billingDetails.lastName' => ['required', 'string'],
-			'billingDetails.address' => ['required', 'string'],
-			'billingDetails.addressOptional' => ['nullable', 'string'],
-			'billingDetails.city' => ['required', 'string'],
-			'billingDetails.country' => ['required', 'string'],
-			'billingDetails.postalCode' => ['required', 'string'],
-			'billingDetails.optional' => ['nullable', 'string'],
+			'billingDetails.date' => ['required'],
+			'billingDetails.emergencyContactName' => ['required'],
+			'billingDetails.emergencyContactPhone' => ['required'],
+			'billingDetails.passengers' => ['nullable', 'array'],
         ];
 
     }//end rules()

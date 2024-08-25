@@ -17,15 +17,15 @@ import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { Order } from '@models/orders/order.model';
 import { OrderApiResolver } from '@resolvers/order-api.resolver';
 import { OrderDetailComponent } from './components/order-detail/order-detail.component';
-import { OrderProductsComponent } from './components/order-products-list/order-products-list.component';
 import { OrdersRoutingModule } from './orders-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { UiModule } from '@modules/ui/ui.module';
 import { NgbModal,NgbNavModule,  NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { OrderPassengersComponent } from './components/order-passengers-list/order-passengers-list.component';
 @NgModule({
   declarations: [
-    ListPageComponent,  DetailPageComponent, OrderDetailComponent, OrderProductsComponent
+    ListPageComponent,  DetailPageComponent, OrderDetailComponent, OrderPassengersComponent
   ],
   imports: [
     OrdersRoutingModule,
@@ -36,7 +36,7 @@ import { NgbModal,NgbNavModule,  NgbTooltipModule } from '@ng-bootstrap/ng-boots
     NgSelectModule,
     NgbDropdownModule,
     NgbNavModule,
-    NgbTooltipModule, 
+    NgbTooltipModule,
     NgbPagination,
     NgbPaginationModule,
     NgbDatepickerModule,

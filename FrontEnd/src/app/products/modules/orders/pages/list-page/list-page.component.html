@@ -33,9 +33,6 @@
                 <tr>
                   <th>Valor</th>
                   <th>Medio de Pago</th>
-                  <th>Cuidad</th>
-                  <th>Pais</th>
-                  <th>Pago</th>
                   <th>Estado</th>
                   <th scope="col" width="300px">Acciones</th>
                 </tr>
@@ -44,13 +41,8 @@
                 <tr *ngFor="let data of (service.collection$ | async)?.data">
                   <th scope="row">{{ data.payment.value   | punctuation }} COP</th>
                   <td>{{ data.payment.provider }}</td>
-                  <td>{{data.city}}</td>
-                  <td>{{ data.country }}</td>
                   <td>
-                    <span class="badge badge-pill badge-soft-success font-size-11 p-1">Exitosa</span>
-                  </td>
-                  <td>
-                    <span class="badge badge-pill badge-soft-success font-size-11 p-1">{{data.status === 'STORE' ? 'En tienda' : (data.status === 'DISTRIBUTION' ? 'En distribucion' : (data.status === 'DELIVERED' ? 'Entregado' : 'Unknown'))}}</span>
+                    <span class="badge badge-pill badge-soft-success font-size-11 p-1">{{data.status}}</span>
                   </td>
                   <td>
                     <div class="d-flex gap-1 justify-content-start">

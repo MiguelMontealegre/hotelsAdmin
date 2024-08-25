@@ -20,42 +20,39 @@ import { Category } from '@models/categories/category.model';
 import { PaginatedCollection } from '@models/collection/paginated-collection';
 import { debounce, map } from 'lodash';
 import { Tag } from '@models/tags/tag.model';
-import { OrderProduct } from '@models/order-products/order-product.model';
 import { Lightbox } from 'ngx-lightbox';
+import { Passenger } from '@models/orders/order.model';
 
 @Component({
-  selector: 'app-order-products-list',
-  templateUrl: './order-products-list.component.html',
+  selector: 'app-order-passengers-list',
+  templateUrl: './order-passengers-list.component.html',
   providers: [
     CollectionService,
-    { provide: 'API_SERVICE', useValue: 'order-products' },
+    { provide: 'API_SERVICE', useValue: 'passengers' },
     CommonApiService,
     CommonVerbsApiService
   ],
 })
-export class OrderProductsComponent extends CollectionComponent<OrderProduct> {
+export class OrderPassengersComponent extends CollectionComponent<Passenger> {
   breadCrumbs = [
     { label: 'Orden de Productos', active: true },
   ];
   TRANSLATE_KEY= 'ADMIN.USERS.PAGES.LIST.'
   products = [];
 
-
-  roleNames: string[] = [];
-
-  private subject$: BehaviorSubject<OrderProduct | null> =
-    new BehaviorSubject<OrderProduct | null>(null);
+  private subject$: BehaviorSubject<Passenger | null> =
+    new BehaviorSubject<Passenger | null>(null);
 
   constructor(
     router: Router,
     location: Location,
     api: CommonApiService,
-    service: CollectionService<OrderProduct>,
+    service: CollectionService<Passenger>,
     private toastr: ToastrService,
     private route: ActivatedRoute,
     private apiAuth: AuthenticationApiService,
     @Inject('AuthService')
-    public authService: ModelService<OrderProduct>,
+    public authService: ModelService<Passenger>,
     @Inject('MenuService')
     public menuService: ModelService<MenuItem[]>,
     private modal: NgbModal,
@@ -96,19 +93,5 @@ export class OrderProductsComponent extends CollectionComponent<OrderProduct> {
 
   ngOnInit(): void {
     super.ngOnInit();
-    this.checkRole();
-
-  }
-
-  checkRole(){
-    const user = this.authenticationService?.authService?.model;
-    const roleNames = map(user.roles, r => r.name);
-    this.roleNames = roleNames;
-  }
-
-  goToDetails(data: OrderProduct) {
-    this.router
-      .navigate([`detail/${data.id}`], { relativeTo: this.route })
-      .then();
   }
 }

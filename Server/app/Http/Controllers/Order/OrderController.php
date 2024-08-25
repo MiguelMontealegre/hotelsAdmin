@@ -23,8 +23,6 @@ class OrderController extends Controller
         $order = Order::find($id);
         $order->status = $request->input('status');
         $order->save();
-        $user= User::find($order->payment->userId);
-        Mail::to($user->email)->send(new SendInfoSaleUser($user, $order));
         return response()->json(['message' => 'Orden actualizada correctamente'], 200);
     }//end update(
 

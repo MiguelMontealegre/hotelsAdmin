@@ -30,10 +30,11 @@ import { TranslateModule } from '@ngx-translate/core';
 import { UiModule } from '@modules/ui/ui.module';
 import { UiSwitchModule } from 'ngx-ui-switch';
 import { WidgetModule } from '@modules/widget/widget.module';
+import { BookingModalComponent } from './modals/booking-modal/booking-modal.component';
 
 @NgModule({
   declarations: [
-    ListPageComponent, DetailPageComponent, ProductDetailComponent, FavoritesListPageComponent, FilterProductsPipe,
+    ListPageComponent, DetailPageComponent, ProductDetailComponent, FavoritesListPageComponent, FilterProductsPipe, BookingModalComponent
   ],
   imports: [
     CommonModule,

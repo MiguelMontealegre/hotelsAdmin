@@ -1,0 +1,21 @@
+
+.d-sm-none-custom {
+  height: 1vw !important;
+  @media (max-width: 1199px) {
+    display: none;
+  }
+}
+
+.custom-col-12 {
+  @media (max-width: 1199px) {
+    width: 100% !important;
+  }
+}
+
+
+.custom-card-with {
+  width: 100%;
+  @media (max-width: 991px) {
+    width: 40% !important;
+  }
+}

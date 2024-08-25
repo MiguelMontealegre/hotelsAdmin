@@ -1,31 +1,19 @@
-import { BehaviorSubject, takeUntil } from 'rxjs';
-import { Component, Inject } from '@angular/core';
-import Swal, { SweetAlertResult } from 'sweetalert2';
-import { getMenuByRole, getRouteByRole } from '@functions/routing';
+import { BehaviorSubject } from 'rxjs';
+import { Component } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
-import { ApiResponse } from '@models/common/api-response.model';
-import { AuthenticationApiService } from '@services/account/authentication-api.service';
 import { AuthenticationService } from '@services/account/authentication.service';
-import { CartProduct } from '@models/cart/cart-product.model';
 import { CollectionComponent } from '@components/abstract/collection.component';
 import { CollectionService } from '@services/common/collection.service';
 import { CommonApiService } from '@services/common/common-api.service';
 import { CommonVerbsApiService } from '@services/common/common-verbs-api.service';
-import { FormControl } from '@angular/forms';
 import { Location } from '@angular/common';
-import { MenuItem } from '@models/layout/menu.model';
-import { ModelService } from '@services/common/model.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Options } from 'ng5-slider';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Product } from '@models/products/product.model';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { User } from '@models/account/user.model';
-import { alertFire } from '@functions/alerts';
 import { map } from 'lodash';
-import { CountCartService } from '@services/layout/count-cart.service';
 
 @Component({
   selector: 'app-pin-products-list-page',
@@ -76,7 +64,6 @@ export class PinProductsListPageComponent extends CollectionComponent<Product> {
     private api2: CommonVerbsApiService,
     service: CollectionService<Product>,
     private toastr: ToastrService,
-    private countCartService: CountCartService,
     private route: ActivatedRoute,
     private modal: NgbModal,
     public authenticationService: AuthenticationService
@@ -133,84 +120,4 @@ export class PinProductsListPageComponent extends CollectionComponent<Product> {
         .then();
     }
   }
-
-
-  addToCart(product: Product) {
-
-    if (product?.sizes?.length > 0 || product?.colors?.length > 0) {
-      alertFire('Este producto requiere que se seleccionen detalles adicionales, seras redirigido a el detalle para continuar con el proceso').then(result => {
-        if (result.value) {
-          this.router.navigate(['/products/detail/', product.id]);
-          return;
-        }
-      });
-    } else {
-      const quantity = 1;
-      if (this.authenticationService.authService.model) {
-        const productData = {
-          productId: product.id,
-          userId: this.authenticationService.authService.model.id,
-          quantity: quantity,
-        };
-        this.api2.post(`cart-products/add-product`, productData)
-          .subscribe(r => {
-            if (r) {
-              this.countCartService.updateCartCount();
-              this.toastr.success('Producto añadido exitosamente.')
-            }
-          },
-            error => {
-              this.toastr.error('La cantidad es Invalida!' || error || error?.error || error?.error?.message);
-            });
-      } else {
-        const productData = {
-          product: product,
-          userId: null,
-          quantity: quantity,
-        };
-
-        const cart = this.getCartFromLocalStorage();
-        const cartProducts = cart.filter(p => p.product.id === product.id);
-        const cartProductTotalQuantity = cartProducts.reduce((total, product) => total + product.quantity, 0);
-        let productMatch = false;
-
-        if (product.availableQuantity < quantity + cartProductTotalQuantity) {
-          this.toastr.error('La cantidad es invalida!');
-          return;
-        }
-        if (cart.length > 0) {
-          for (const cartProduct of cartProducts) {
-            if (cartProduct) {
-              cartProduct.quantity = cartProduct.quantity + quantity;
-              localStorage.setItem('cart', JSON.stringify(cart));
-              productMatch = true;
-              this.countCartService.updateCartCount();
-              this.toastr.success('Producto añadido exitosamente.')
-            }
-          }
-          if (!productMatch) {
-            cart.unshift(productData);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            this.countCartService.updateCartCount();
-            this.toastr.success('Producto añadido exitosamente.')
-          }
-        } else {
-          cart.unshift(productData);
-          localStorage.setItem('cart', JSON.stringify(cart));
-          this.countCartService.updateCartCount();
-          this.toastr.success('Producto añadido exitosamente.')
-        }
-      }
-    }
-  }
-
-  getCartFromLocalStorage(): CartProduct[] {
-    const cartItemsJSON = localStorage.getItem('cart');
-    if (cartItemsJSON) {
-      return JSON.parse(cartItemsJSON);
-    } else {
-      return [];
-    }
-  }
-
 }

@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Http\Resources\Order;
+namespace App\Http\Resources\Passenger;
 
-use App\Models\Order;
+use App\Models\Passenger;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 
-class OrderResource extends JsonResource
+class PassengerResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -21,12 +21,15 @@ class OrderResource extends JsonResource
     {
         $ary = [
             'id'                => $this->resource->id,
-			'status' 			=> $this->resource->status,
-            'date'         => $this->resource->date,
-			'payment'          => $this->resource->payment,
-            'emergencyContactName'          => $this->resource->emergencyContactName,
-            'emergencyContactPhone'          => $this->resource->emergencyContactPhone,
-            'passengers' => $this->resource->passengers,
+            'name'         => $this->resource->name,
+            'email'          => $this->resource->email,
+
+            'phone'          => $this->resource->phone,
+            'gender'          => $this->resource->gender,
+            'birthday'          => $this->resource->birthday,
+            'identification'          => $this->resource->identification,
+            'idType'          => $this->resource->idType,
+
             'createdAt'         => $this->resource->createdAt->format('Y-m-d H:i:s'),
 			'deletedAt'         => $this->resource->deletedAt,
         ];

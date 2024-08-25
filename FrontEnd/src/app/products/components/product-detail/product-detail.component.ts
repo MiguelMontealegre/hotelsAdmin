@@ -20,6 +20,8 @@ import { CommonVerbsApiService } from '@services/common/common-verbs-api.service
 import { Size } from '@models/products/product-size.model';
 import { Color } from '@models/products/product-color.model';
 import { CountCartService } from '@services/layout/count-cart.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { BookingModalComponent } from '../../modals/booking-modal/booking-modal.component';
 
 @Component({
   selector: 'app-product-detail',
@@ -58,7 +60,8 @@ export class ProductDetailComponent extends CommonComponent implements OnInit {
     public authenticationService: AuthenticationService,
     private countCartService: CountCartService,
     private toastr: ToastrService,
-    private api2: CommonVerbsApiService
+    private api2: CommonVerbsApiService,
+    private modal: NgbModal,
   ) {
     super();
   }
@@ -240,115 +243,17 @@ export class ProductDetailComponent extends CommonComponent implements OnInit {
   }
 
 
-  incrementQuantity() {
-    if (this.quantity === this.productDetail.availableQuantity) {
-      return;
-    } else if (this.quantity > this.productDetail.availableQuantity) {
-      this.quantity = this.productDetail.availableQuantity;
-    } else {
-      this.quantity++;
-    }
-  }
-
-  decrementQuantity() {
-    if (this.quantity === 1) {
-      return;
-    } else if (this.quantity < 1) {
-      this.quantity = 1;
-    } else {
-      this.quantity--;
-    }
-  }
-
-
-  addToCart() {
-    alertFire('').then(result => {
-      if (result.value) {
-        if (this.productDetail?.sizes?.length > 0) {
-          if (!this.selectedSize) {
-            this.toastr.error('Por Favor Seleciona un Tamaaño Valido.');
-            return;
-          }
-        }
-        if (this.productDetail?.colors?.length > 0) {
-          if (!this.selectedColor) {
-            this.toastr.error('Por favor Seleciona un color Valido.');
-            return;
-          }
-        }
-        if (this.authenticationService.authService.model) {
-          const productData = {
-            productId: this.productDetail.id,
-            userId: this.authenticationService.authService.model.id,
-            quantity: this.quantity,
-            sizeId: this.selectedSize?.id ?? null,
-            colorId: this.selectedColor?.id ?? null,
-          };
-          this.api2.post(`cart-products/add-product`, productData)
-            .subscribe(r => {
-              if (r) {
-                this.countCartService.updateCartCount();
-                this.toastr.success('Producto añadido exitosamente.')
-              }
-            },
-              error => {
-                this.toastr.error('La cantidad es Invalidad!' || error || error?.error || error?.error?.message);
-              });
-        } else {
-          const productData = {
-            product: this.productDetail,
-            userId: null,
-            quantity: this.quantity,
-            size: this.selectedSize ?? null,
-            color: this.selectedColor ?? null,
-          };
-
-          const cart = this.getCartFromLocalStorage();
-          const cartProducts = cart.filter(p => p.product.id === this.productDetail.id);
-          const cartProductTotalQuantity = cartProducts.reduce((total, product) => total + product.quantity, 0);
-          let productMatch = false;
-
-          if (this.productDetail.availableQuantity < this.quantity + cartProductTotalQuantity) {
-            this.toastr.error('La cantidad es invalida!');
-            return;
-          }
-          if (cart.length > 0) {
-            for (const cartProduct of cartProducts) {
-              if (cartProduct && cartProduct.size?.id === this.selectedSize?.id && cartProduct.color?.id === this.selectedColor?.id) {
-                cartProduct.quantity = cartProduct.quantity + this.quantity;
-                localStorage.setItem('cart', JSON.stringify(cart));
-                productMatch = true;
-                this.countCartService.updateCartCount();
-                this.toastr.success('Producto añadido exitosamente.')
-              }
-            }
-            if (!productMatch) {
-              cart.unshift(productData);
-              localStorage.setItem('cart', JSON.stringify(cart));
-              this.countCartService.updateCartCount();
-              this.toastr.success('Producto añadido exitosamente.')
-            }
-          } else {
-            cart.unshift(productData);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            this.countCartService.updateCartCount();
-            this.toastr.success('Producto añadido exitosamente.')
-          }
-        }
-      }
+  booking(){
+    const modalRef = this.modal.open(BookingModalComponent, {
+      centered: true,
+      size: 'xl',
     });
+    modalRef.componentInstance.product = this.productDetail;
+    modalRef.componentInstance.bookingSaved.subscribe((event) => {
+      if (event) {
+        console.log(event);
+
+      }
+    })
   }
-
-
-
-  getCartFromLocalStorage(): CartProduct[] {
-    const cartItemsJSON = localStorage.getItem('cart');
-    if (cartItemsJSON) {
-      return JSON.parse(cartItemsJSON);
-    } else {
-      return [];
-    }
-  }
-
-
 }
