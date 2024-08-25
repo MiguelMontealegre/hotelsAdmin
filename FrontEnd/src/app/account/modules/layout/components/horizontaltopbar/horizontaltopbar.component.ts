@@ -11,7 +11,6 @@ import { MenuItem } from '@models/layout/menu.model';
 import { OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ThemeService } from '@services/layout/theme-service.service';
-import { CountCartService } from '@services/layout/count-cart.service';
 
 @Component({
   selector: 'app-horizontaltopbar',
@@ -37,7 +36,6 @@ export class HorizontaltopbarComponent
     authenticationService: AuthenticationService,
     private eventService: EventService,
     private route: ActivatedRoute,
-    private car: CountCartService,
     private themeService: ThemeService
   ) {
     super(
@@ -55,7 +53,6 @@ export class HorizontaltopbarComponent
     this.attribute = this.themeService.getLayout();
     const modeAttribute = this.themeService.getTheme();
     this.mode= modeAttribute !== '' ? modeAttribute : 'light';
-    this.getCart();
   }
 
   changeLayout() {
@@ -67,15 +64,5 @@ export class HorizontaltopbarComponent
     this.mode = themeMode;
     this.themeService.setTheme(themeMode);
   }
-  getCart(){
-    this.car.getCount().subscribe(
-      (count: number) => {
-        this.countCart = count;
-      },
-      (error) => {
-        console.error('Error al obtener la cantidad de productos del carrito:', error);
-      }
-    );
-  }
-  
+
 }

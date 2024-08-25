@@ -23,7 +23,6 @@ import { debounce, map } from 'lodash';
 import { Tag } from '@models/tags/tag.model';
 import { CartProduct } from '@models/cart/cart-product.model';
 import { alertFire } from '@functions/alerts';
-import { CountCartService } from '@services/layout/count-cart.service';
 
 @Component({
   selector: 'app-list-page',
@@ -73,7 +72,6 @@ export class ListPageComponent extends CollectionComponent<Product> {
   constructor(
     router: Router,
     location: Location,
-    private countCartService: CountCartService,
     api: CommonApiService,
     service: CollectionService<Product>,
     private toastr: ToastrService,

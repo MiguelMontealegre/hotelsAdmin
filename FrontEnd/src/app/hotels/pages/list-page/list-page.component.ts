@@ -19,7 +19,6 @@ import { Category } from '@models/categories/category.model';
 import { map } from 'lodash';
 import { Tag } from '@models/tags/tag.model';
 import { alertFire } from '@functions/alerts';
-import { CountCartService } from '@services/layout/count-cart.service';
 import { Hotel } from '@models/hotels/hotel.model';
 
 @Component({
@@ -70,7 +69,6 @@ export class ListPageComponent extends CollectionComponent<Hotel> {
   constructor(
     router: Router,
     location: Location,
-    private countCartService: CountCartService,
     api: CommonApiService,
     service: CollectionService<Hotel>,
     private toastr: ToastrService,

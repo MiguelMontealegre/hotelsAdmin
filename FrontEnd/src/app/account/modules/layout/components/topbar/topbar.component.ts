@@ -13,7 +13,6 @@ import { Member } from '@models/account/member.model';
 import { Router } from '@angular/router';
 import { EventService } from '@services/layout/event.service';
 import { ThemeService } from '@services/layout/theme-service.service';
-import { CountCartService } from '@services/layout/count-cart.service';
 
 @Component({
   selector: 'app-topbar',
@@ -37,7 +36,6 @@ export class TopbarComponent extends BaseTopBarComponent implements OnInit {
     authenticationService: AuthenticationService,
     private route: ActivatedRoute,
     private eventService: EventService,
-    private car: CountCartService,
     private themeService: ThemeService
   ) {
     super(
@@ -50,7 +48,6 @@ export class TopbarComponent extends BaseTopBarComponent implements OnInit {
   }
   override ngOnInit(): void {
     super.ngOnInit();
-    this.getCart();
     this.attribute = this.themeService.getLayout();
     const modeAttribute = this.themeService.getTheme();
     this.themeService.setTheme(modeAttribute !== '' ? modeAttribute : 'light');
@@ -65,15 +62,5 @@ export class TopbarComponent extends BaseTopBarComponent implements OnInit {
   changeLayout() {
     this.themeService.setLayout('horizontal');
     this.eventService.broadcast('changeLayout', 'horizontal');
-  }
-  getCart(){
-    this.car.getCount().subscribe(
-      (count: number) => {
-        this.countCart = count;
-      },
-      (error) => {
-        console.error('Error al obtener la cantidad de productos del carrito:', error);
-      }
-    );
   }
 }

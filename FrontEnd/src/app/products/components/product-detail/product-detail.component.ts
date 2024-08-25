@@ -19,7 +19,6 @@ import { CartProduct } from '@models/cart/cart-product.model';
 import { CommonVerbsApiService } from '@services/common/common-verbs-api.service';
 import { Size } from '@models/products/product-size.model';
 import { Color } from '@models/products/product-color.model';
-import { CountCartService } from '@services/layout/count-cart.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BookingModalComponent } from '../../modals/booking-modal/booking-modal.component';
 
@@ -58,7 +57,6 @@ export class ProductDetailComponent extends CommonComponent implements OnInit {
     public api: CommonApiService,
     private lightbox: Lightbox,
     public authenticationService: AuthenticationService,
-    private countCartService: CountCartService,
     private toastr: ToastrService,
     private api2: CommonVerbsApiService,
     private modal: NgbModal,

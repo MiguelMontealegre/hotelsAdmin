@@ -13,7 +13,6 @@ import { Router } from '@angular/router';
 import { dataModules } from '@database/subscription-panel-modules';
 import { ThemeService } from '@services/layout/theme-service.service';
 import { of, switchMap } from 'rxjs';
-import { CountCartService } from '@services/layout/count-cart.service';
 
 @Component({
   selector: 'app-topbar',
@@ -37,7 +36,6 @@ export class TopbarComponent
     @Inject(DOCUMENT) document: InjectionToken<Document>,
     router: Router,
     languageService: LanguageService,
-    private car: CountCartService,
     cookiesService: CookieService,
     authenticationService: AuthenticationService,
     private themeService: ThemeService,
@@ -82,7 +80,6 @@ export class TopbarComponent
         this.unsubscribe.push(subscribe);
       }
     });
-    this.getCart();
   }
 
   changeLayout() {
@@ -108,16 +105,6 @@ export class TopbarComponent
   changeMode(themeMode: string) {
     this.mode = themeMode;
     this.themeService.setTheme(themeMode);
-  }
-  getCart(){
-    this.car.getCount().subscribe(
-      (count: number) => {
-        this.countCart = count;
-      },
-      (error) => {
-        console.error('Error al obtener la cantidad de productos del carrito:', error);
-      }
-    );
   }
 
 }

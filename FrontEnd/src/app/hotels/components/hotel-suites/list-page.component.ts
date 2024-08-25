@@ -16,7 +16,6 @@ import { ToastrService } from 'ngx-toastr';
 import { FormControl } from '@angular/forms';
 import { Product } from '@models/products/product.model';
 import { CommonVerbsApiService } from '@services/common/common-verbs-api.service';
-import { CountCartService } from '@services/layout/count-cart.service';
 
 @Component({
   selector: 'app-suites-list-page',
@@ -44,7 +43,6 @@ export class SuitesListPageComponent extends CollectionComponent<Product> {
   constructor(
     router: Router,
     location: Location,
-    private countCartService: CountCartService,
     api: CommonApiService,
     service: CollectionService<Product>,
     private toastr: ToastrService,

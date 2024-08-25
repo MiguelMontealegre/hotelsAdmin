@@ -21,7 +21,6 @@ import { of } from 'rxjs';
 import { switchMap } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { CountCartService } from '@services/layout/count-cart.service';
 import { Category } from '@models/categories/category.model';
 
 @Component({
@@ -106,7 +105,7 @@ export class HomePageComponent extends CommonComponent implements OnInit {
   mode: string;
 
 
-  animalsCategories: Category[] = []; 
+  animalsCategories: Category[] = [];
 
 
   testimonials = [
@@ -156,7 +155,6 @@ export class HomePageComponent extends CommonComponent implements OnInit {
 
   constructor(
     private title: Title,
-    private car: CountCartService,
     private meta: Meta,
     private router: Router,
     public authenticationService: AuthenticationService,
@@ -166,7 +164,7 @@ export class HomePageComponent extends CommonComponent implements OnInit {
     private toastr: ToastrService,
     private themeService: ThemeService,
     public languageService: LanguageService,
-    
+
     public cookiesService: CookieService,
     public _cookiesService: CookieService,
     private sanitizer: DomSanitizer,
@@ -199,16 +197,13 @@ export class HomePageComponent extends CommonComponent implements OnInit {
           )
           .subscribe(response => {
             if (response) {
-              this.getCart();
               this.authenticationService.authService.set(response);
-           
+
             } else {
               this.authenticationService.logout();
             }
           });
         this.unsubscribe.push(subscribe);
-      }else{
-        this.car.getCount();
       }
     });
     this.checkRole();
@@ -227,9 +222,9 @@ export class HomePageComponent extends CommonComponent implements OnInit {
 
 
 
-    
 
-    
+
+
 
 
 
@@ -259,17 +254,7 @@ export class HomePageComponent extends CommonComponent implements OnInit {
     this.mode = themeMode;
     this.themeService.setTheme(themeMode);
   }
-  getCart(){
-    this.car.getCount().subscribe(
-      (count: number) => {
-        this.countCart = count;
-      },
-      (error) => {
-        console.error('Error al obtener la cantidad de productos del carrito:', error);
-      }
-    );
-  }
-  
+
 
 
   getDays(t) {

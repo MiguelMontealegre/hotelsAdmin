@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 import { dataModules } from '@database/products-modules';
 import { ThemeService } from '@services/layout/theme-service.service';
 import { of, switchMap } from 'rxjs';
-import { CountCartService } from '@services/layout/count-cart.service';
 
 @Component({
   selector: 'app-horizontaltopbar',
@@ -31,7 +30,6 @@ export class HorizontaltopbarComponent extends BaseTopBarComponent implements On
     languageService: LanguageService,
     cookiesService: CookieService,
     authenticationService: AuthenticationService,
-    private countCartService: CountCartService, // Renombrado para claridad
     private themeService: ThemeService,
     private eventService: EventService
   ) {
@@ -40,7 +38,6 @@ export class HorizontaltopbarComponent extends BaseTopBarComponent implements On
 
   override ngOnInit(): void {
     super.ngOnInit();
-    this.getCartCount(); 
     this.checkRole();
 
     const attributeAux = this.themeService.getLayout();
@@ -85,16 +82,4 @@ export class HorizontaltopbarComponent extends BaseTopBarComponent implements On
     this.themeService.setTheme(themeMode);
   }
 
-  getCartCount() {
-    const cartCountSubscription = this.countCartService.getCartCountUpdates().subscribe(
-      (count: number) => {
-        this.countCart = count;
-      },
-      (error) => {
-        console.error('Error al obtener la cantidad de productos del carrito:', error);
-      }
-    );
-    this.unsubscribe.push(cartCountSubscription);
-    this.countCartService.updateCartCount();
-  }
 }
