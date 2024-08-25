@@ -21,8 +21,8 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         $dogs = Media::query()->create([
-            'name'           => 'dog',
-            'description'    => 'dog category',
+            'name'           => 'Resorts',
+            'description'    => 'Resorts category',
             'fileType'       => 'image/jpg',
             'type'           => 'image',
             'extension'      => 'jpg',
@@ -31,14 +31,14 @@ class CategorySeeder extends Seeder
             'height'         => 600,
             'bucketName'     => '',
             'resource'       => '',
-            'url'            => 'https://ecommercewgs.s3.amazonaws.com/2024-03-27/p2ML6QzCyjWhLqMiLPeq3UZ9J3NHKDmkxREY7Z6O.jpg',
+            'url'            => 'https://forever.travel-assets.com/flex/flexmanager/images/2023/11/27/e6f49469-b67f-485b-8aaf-f14a79d0d164.jpeg?impolicy=fcrop&h=590&w=448&q=mediumHigh',
             'uploadByUserId' => User::query()->inRandomOrder()->first()->id,
             'mediableId'     => '',
             'mediableType'   => '',
         ]);
 		$cats = Media::query()->create([
-            'name'           => 'cat',
-            'description'    => 'cat category',
+            'name'           => 'Cabañas',
+            'description'    => 'Cabañas category',
             'fileType'       => 'image/jpg',
             'type'           => 'image',
             'extension'      => 'jpg',
@@ -47,14 +47,14 @@ class CategorySeeder extends Seeder
             'height'         => 600,
             'bucketName'     => '',
             'resource'       => '',
-            'url'            => 'https://ecommercewgs.s3.amazonaws.com/2024-03-27/snBpd8a0iw243HMJ4jp4RLAChQr9VYzwuxyLeAd2.jpg',
+            'url'            => 'https://forever.travel-assets.com/flex/flexmanager/images/2023/12/02/3623a5ce-2e06-4f01-9072-4055c5d29326.jpeg?impolicy=fcrop&h=590&w=448&q=mediumHigh',
             'uploadByUserId' => User::query()->inRandomOrder()->first()->id,
             'mediableId'     => '',
             'mediableType'   => '',
         ]);
 		$birds = Media::query()->create([
-            'name'           => 'bird',
-            'description'    => 'bird category',
+            'name'           => 'Vista al mar',
+            'description'    => 'Vista al mar category',
             'fileType'       => 'image/jpg',
             'type'           => 'image',
             'extension'      => 'jpg',
@@ -63,14 +63,14 @@ class CategorySeeder extends Seeder
             'height'         => 600,
             'bucketName'     => '',
             'resource'       => '',
-            'url'            => 'https://ecommercewgs.s3.amazonaws.com/2024-03-27/H92qCMOFdZBj2IHJXSkvhpJewtkWm567uJPmfH0K.jpg',
+            'url'            => 'https://forever.travel-assets.com/flex/flexmanager/images/2023/11/24/4fd89b66-18da-4c97-9331-074ec8299784.jpeg?impolicy=resizecrop&rw=896&rh=590&cw=448&cx=-20',
             'uploadByUserId' => User::query()->inRandomOrder()->first()->id,
             'mediableId'     => '',
             'mediableType'   => '',
         ]);
 		$rodents = Media::query()->create([
-            'name'           => 'rodent',
-            'description'    => 'rodent category',
+            'name'           => 'Familia',
+            'description'    => 'Familia category',
             'fileType'       => 'image/jpg',
             'type'           => 'image',
             'extension'      => 'jpg',
@@ -79,7 +79,7 @@ class CategorySeeder extends Seeder
             'height'         => 600,
             'bucketName'     => '',
             'resource'       => '',
-            'url'            => 'https://ecommercewgs.s3.amazonaws.com/2024-03-27/gJV4krnaIx9XwQmro8yJYeLcu5ZQUKcml2NEsssP.jpg',
+            'url'            => 'https://forever.travel-assets.com/flex/flexmanager/images/2023/11/24/VRBO_APFT2_BARCELONA_THERIN_HOUSE_1_2974.jpg?impolicy=fcrop&h=590&w=448&q=mediumHigh',
             'uploadByUserId' => User::query()->inRandomOrder()->first()->id,
             'mediableId'     => '',
             'mediableType'   => '',
@@ -87,23 +87,23 @@ class CategorySeeder extends Seeder
 
 
 		Category::query()->create([
-			'title' => 'Perros',
-			'description' => 'Categoria de Perros',
+			'title' => 'Resorts',
+			'description' => 'Categoria Resorts',
 			'logoMediaId' => $dogs->id
 		]);
 		Category::query()->create([
-			'title' => 'Gatos',
-			'description' => 'Categoria de Gatos',
+			'title' => 'Cabañas',
+			'description' => 'Categorias Cabañas',
 			'logoMediaId' => $cats->id
 		]);
 		Category::query()->create([
-			'title' => 'Aves',
-			'description' => 'Categoria de Aves',
+			'title' => 'Vista al mar',
+			'description' => 'Categoria Vista al mar',
 			'logoMediaId' => $birds->id
 		]);
 		Category::query()->create([
-			'title' => 'Roedores',
-			'description' => 'Categoria de Roedores',
+			'title' => 'Familia',
+			'description' => 'Categoria de Familia',
 			'logoMediaId' => $rodents->id
 		]);
 

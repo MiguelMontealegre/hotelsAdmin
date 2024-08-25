@@ -54,7 +54,7 @@
                   </div>
                   <a
                     *ngIf="product.media"
-                    [routerLink]="['./../detail/', product.id]"
+                    [routerLink]="['/products/detail/', product.id]"
                     href="javascript: void(0);"
                     ><img
                       src="{{ product.media[0]?.url }}"
@@ -67,7 +67,7 @@
                 <div class="mt-4 text-center">
                   <h5 class="mb-3 product-ref">
                     <a
-                      [routerLink]="['./../detail/', product.id]"
+                      [routerLink]="['/products/detail/', product.id]"
                       href="javascript: void(0);"
                       class="text-dark"
                       >{{ product.title }}

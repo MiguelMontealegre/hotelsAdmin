@@ -19,20 +19,20 @@ class TagSeeder extends Seeder
     public function run(): void
     {
 		Tag::query()->create([
-			'title' => 'Limpieza',
-			'description' => 'Limpieza Tag',
+			'title' => 'Mascotas',
+			'description' => 'Mascotas Tag',
 		]);
 		Tag::query()->create([
-			'title' => 'Alimento',
-			'description' => 'Alimento Tag',
+			'title' => 'Todo incluido',
+			'description' => 'Todo incluido Tag',
 		]);
 		Tag::query()->create([
-			'title' => 'Ropa',
-			'description' => 'Ropa Tag',
+			'title' => 'Lujo',
+			'description' => 'Lujo Tag',
 		]);
 		Tag::query()->create([
-			'title' => 'Juguetes',
-			'description' => 'Juguetes Tag',
+			'title' => 'Barato',
+			'description' => 'Barato Tag',
 		]);
 
 
