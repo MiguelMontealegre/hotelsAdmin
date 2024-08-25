@@ -40,7 +40,6 @@ import { TermsUseComponent } from './pages/terms-use/terms-use.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { UiModule } from '@modules/ui/ui.module';
 import { WebSiteRoutingModule } from './web-site-routing.module';
-import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +55,6 @@ import { ContactUsComponent } from './pages/contact-us/contact-us.component';
     PendingWholesaleComponent,
     ReviewsListPageComponent,
     PinProductsListPageComponent,
-    ContactUsComponent
   ],
   imports: [
     TranslateModule,

@@ -54,7 +54,6 @@ class ReviewController extends Controller
 		$recipientEmails = User::whereHas('roles', function ($query) {
 			$query->where('name', 'ADMIN');
 		})->pluck('email')->toArray();
-		Mail::to($recipientEmails)->send(new SendInfoReview ($user, $review ));
 
 		return response()
 		->json(ReviewResource::make($review))

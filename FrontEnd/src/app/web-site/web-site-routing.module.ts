@@ -9,15 +9,10 @@ import { RouterModule } from '@angular/router';
 import { Routes } from '@angular/router';
 import { TermsUseComponent } from './pages/terms-use/terms-use.component';
 import { UserPivotGuard } from '../core/guards/user-pivot.guard';
-import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 const routes: Routes = [
   {
     path: '',
     component: HomePageComponent,
-  },
-  {
-    path: 'contact-us',
-    component: ContactUsComponent
   },
   {
     path: 'meta',
