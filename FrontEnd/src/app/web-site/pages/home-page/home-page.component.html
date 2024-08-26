@@ -143,8 +143,48 @@
 
 
 <div>
-  <section class="section bg-white pt-4 pb-0">
-    <app-banners-list-page> </app-banners-list-page>
+  <section class="section hero-section bg-ico-hero bg-dark-color" id="home">
+    <div class="bg-overlay"></div>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="text-white-50">
+            <h1 class="text-white fw-semibold mb-3 hero-title">
+              Luxury Resorts
+            </h1>
+            <p class="text-white mt-4 main-sub-title">
+              Major suites
+            </p>
+
+            <div class="button-items mt-5 d-flex gap-2">
+              <button
+                routerLink="/products/portal"
+                class="btn btn-rounded btn-primary mx-1 text-white fw-bold"
+              >
+                <i
+                  class="bx bx-planet"
+                  style="font-size: 1.3em"
+                ></i
+                ><span class="ms-2">Explore</span>
+              </button>
+              <button
+                (click)="redirectToExternalAuth('google')"
+                class="btn btn-rounded btn-light bg-white mx-1 fw-bold google-btn"
+              >
+              <i
+                  class="bx bx-hotel"
+                  style="font-size: 1.3em"
+                ></i
+                >
+                <span class="ms-2 text-black">Our hotels</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end row -->
+    </div>
+    <!-- end container -->
   </section>
 </div>
 
