@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Product;
 use App\Traits\UuidTrait;
+use App\Models\Media\Media;
 use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -48,7 +49,28 @@ class Hotel extends Model
 
     }//end toSearchableArray()
 
+/**
+     * Get company media list
+     *
+     * @return HasMany
+     */
+    public function media(): HasMany
+    {
+        $result = $this->hasMany(Media::class, 'mediableId')
+            ->where('mediableType', get_class($this))
+            ->whereNull('parentId');
 
+        if (request()->has('notAllowSource') && !empty(request()->input('notAllowSource'))) {
+            $result->whereNotIn('source', request()->input('notAllowSource'));
+        }
+
+        if (request()->has('notAllowFile') && !empty(request()->input('notAllowFile'))) {
+            $result->whereNotIn('extension', request()->input('notAllowFile'));
+        }
+
+        return $result;
+
+    }//end media()
 
     /**
      * Get specifications

@@ -16,7 +16,7 @@ export const dataModules: MenuItem[] = [
   },
   {
     id: 6,
-    label: 'Rooms',
+    label: 'Suites',
     icon: 'bx-package',
     link: '/admin/products',
   },
